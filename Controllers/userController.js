@@ -32,7 +32,13 @@ var userController = function( User ) {
       });
         });*/
     console.log(decoded.userid)
-    User.find({_id: decoded.userid}, function(err, users) {
+    var obj = {};
+    if (decoded.admin == "false" ) {
+        obj = {_id: decoded.userid};
+    }
+
+
+    User.find(obj, function(err, users) {
       res.json(users);
     });
    }
