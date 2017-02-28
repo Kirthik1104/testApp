@@ -23,14 +23,14 @@ var port = config.PORT;
 
 app.use( bodyParser.urlencoded({ extended : true }));
 app.use( bodyParser.json());
-
+	
 authenticatRouter = require( './Routes/authentication' )( User )
 userRouter = require( './Routes/userRoutes' )( User );
 courseRouter = require( './Routes/courseRoutes' )( Course );
 
 app.use( '/api/authenticat', authenticatRouter);
 app.use( '/api/user', userRouter);
-app.use( '/api/courses', courseRouter );
+app.use( '/api/course', courseRouter );
 
 app.get( '/', function( req, res ) {
   res.send( 'welcome to my API' );

@@ -1,3 +1,5 @@
+var jwt = require('jsonwebtoken');
+
 var userController = function( User ) {
 
   'use strict';
@@ -10,6 +12,32 @@ var userController = function( User ) {
 
   };
 
+  var get = function(req, res) {
+    if (req.query.token) {
+        var authorization = req.query.token,
+            decoded;    
+        try {
+            decoded = jwt.verify(authorization, "MYSECRETKEY007");
+      console.log(decoded);
+        } catch (e) {
+            return res.status(401).send('unauthorized');
+        }
+        var userId = decoded.id;
+        // Fetch the user by id 
+        /*User.findOne({_id: userId}).then(function(user){
+            // Do something with the user
+      
+      return res.status(200).send({
+        userName: user.userName 
+      });
+        });*/
+    console.log(decoded.userid)
+    User.find({_id: decoded.userid}, function(err, users) {
+      res.json(users);
+    });
+   }
+  };
+ /*
   var get = function( req, res ) {
     var query = {};
     if ( req.query.userName ) {
@@ -33,7 +61,7 @@ var userController = function( User ) {
     
     });
   
-  };
+  };*/
 
   return {
     post : post,

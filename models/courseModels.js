@@ -3,7 +3,8 @@ var Schema = mongoose.Schema;
 
 var courseModel = new Schema({
   title : { type : String },
-  author : { type : String },
+  description: {type: String },
+  instructor : { type : String },
   genre : { type : String },
   read : { type : Boolean, default : false }
 });

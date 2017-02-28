@@ -14,10 +14,10 @@ var routes = function( User ) {
   }, function(err, user) {
     //console.log(user);
     if (err) throw err;
-
-    if (!user) {
+    
+    if (user[0] == null) {
       res.json({ success: false, message: 'Authentication failed. User not found.' });
-    } else if (user) {
+    } else if (user[0].userName) {
 
       // check if password matches
       if (user[0].password == req.body.password) {
@@ -28,7 +28,7 @@ var routes = function( User ) {
           expiresInMinutes: 1440 // expires in 24 hours
         });*/
 
-      console.log("user[0]._id"+user[0]._id+"user[0].userName"+user[0].userName+"user[0].admin"+user[0].admin);
+        console.log("user[0]._id"+user[0]._id+"user[0].userName"+user[0].userName+"user[0].admin"+user[0].admin);
       var userid = user[0]._id;
       var tempUser = { userid:user[0]._id, userName: user[0].userName, admin: user[0].admin };
       var token = jwt.sign(tempUser, "MYSECRETKEY007", {
@@ -47,7 +47,7 @@ var routes = function( User ) {
   });
 });
 
-return userRouter;
+    return userRouter;
 
 };
 

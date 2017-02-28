@@ -47,7 +47,7 @@ var courseController = function( Course ) {
             var newCourse = element.toJSON();
 
             newCourse.links = {};
-            newCourse.links.self = 'http://' + req.headers.host + '/api/courses/' + newCourse._id;
+            newCourse.links.self = 'http://' + req.headers.host + '/api/course/' + newCourse._id;
 
             returnCourse.push( newCourse );
           
