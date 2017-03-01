@@ -905,17 +905,47 @@ require('./_sidebar-toggle-bar');
                     .state('login', {
                         url: '/login',
                         templateUrl: 'website/login.html',
-                        controller: ['$scope', function($scope){
+                        controller: ['$scope, $http', function($scope, $http){
                             $scope.app.settings.htmlClass = htmlClass.websiteLogin;
                             $scope.app.settings.bodyClass = 'login';
+
+                              $scope.login = function() {
+                                $http({
+                                  url: 'http://localhost:3001/api/authenticat',
+                                  method: 'POST',
+                                  data: $scope.user
+                                }).then(function(response) {
+                                  //store.set('jwt', response.data.id_token);
+                                  $state.go('home');
+                                }, function(error) {
+                                  alert(error.data);
+                                });
+                              };
                         }]
                     })
                     .state('sign-up', {
                         url: '/sign-up',
                         templateUrl: 'website/sign-up.html',
-                        controller: ['$scope', function($scope){
+                        controller: ['$scope','$http', function($scope, $http){
                             $scope.app.settings.htmlClass = htmlClass.websiteLogin;
                             $scope.app.settings.bodyClass = 'login';
+
+                            $scope.user = {};
+
+                            $scope.createUser = function() {
+                                $http({
+                                  url: 'http://localhost:3001/users',
+                                  method: 'POST',
+                                  data: $scope.user
+                                }).then(function(response) {
+                                  //store.set('jwt', response.data.id_token);
+                                  alert("success");
+                                  $state.go('home');
+                                }, function(error) {
+                                  alert(error.data);
+                                });
+                            }
+
                         }]
                     });
 

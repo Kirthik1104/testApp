@@ -4696,7 +4696,7 @@ module.exports = [ {
     $.fn.tkFormControlMaterial = function(){
         this
             .blur(function () {
-                if (this.val())
+                if (this.value)
                     this.addClass('used');
                 else
                     this.removeClass('used');
@@ -6043,16 +6043,37 @@ require('./_sidebar-toggle');
                             $scope.app.settings.htmlClass = htmlClass.websiteLogin;
                             $scope.app.settings.bodyClass = 'login';
                             $rootScope.loginPage = true;
+
+
                             
                         }]
                     })
                     .state('sign-up', {
                         url: '/sign-up',
                         templateUrl: 'website/sign-up.html',
-                        controller: ['$scope','$rootScope', function($scope, $rootScope){
+                        controller: ['$scope','$rootScope', '$http', '$state', function($scope, $rootScope, $http, $state){
                             $scope.app.settings.htmlClass = htmlClass.websiteLogin;
                             $scope.app.settings.bodyClass = 'login';
                             $rootScope.loginPage = true;
+
+                            $scope.user = {};
+
+                              $scope.createUser = function() {
+                                $http({
+                                  url: 'http://localhost:3001/api/user',
+                                  method: 'POST',
+                                  data: $scope.user
+                                }).then(function(response) {
+                                  //store.set('jwt', response.data.id_token);
+                                  //$state.go('home');
+                                  alert("user registered  Successfully");
+                                  $state.go('login');
+
+                                }, function(error) {
+                                  alert(error.data);
+                                });
+                              }
+
                         }]
                     });
 

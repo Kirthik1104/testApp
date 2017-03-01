@@ -7,45 +7,47 @@
         <div class="panel-body">
 
           <!-- Signup -->
-          <form role="form" action="::$state.href('pages.dashboard')::" ">
+          <form role="form" action="">
                 <div class="form-group ">
                     <div class="form-control-material ">
-                        <input id="firstName " type="text " class="form-control " placeholder="First Name ">
+                        <input id="firstName " type="text" ng-model="user.firstName" class="form-control " placeholder="First Name ">
                         <label for="firstName ">First name</label>
                     </div>
                 </div>
                 <div class="form-group ">
                     <div class="form-control-material ">
-                        <input id="lastName " type="text " class="form-control " placeholder="Last Name ">
+                        <input id="lastName " type="text"  ng-model="user.lastName" class="form-control " placeholder="Last Name ">
                         <label for="lastName ">Last name</label>
                     </div>
                 </div>
                 <div class="form-group ">
-                    <div class="form-control-material ">
-                        <input id="email " type="email " class="form-control " placeholder="Email ">
+                    <div class="form-control-material">
+                        <input id="email" type="email" ng-model="user.email" class="form-control " placeholder="Email">
                         <label for="email ">Email address</label>
                     </div>
                 </div>
+
+                <div class="form-group ">
+                    <div class="form-control-material">
+                        <input id="address" type="address" ng-model="user.address" class="form-control " placeholder="Address">
+                        <label for="email ">Address</label>
+                    </div>
+                </div>
+
                 <div class="form-group ">
                     <div class="form-control-material ">
-                        <input id="password " type="password " class="form-control " placeholder="Password ">
-                        <label for="password ">Password</label>
+                        <input id="UserName " type="UserName" class="form-control" ng-model="user.userName" placeholder="User name ">
+                        <label for="UserName ">UserName</label>
                     </div>
                 </div>
                 <div class="form-group ">
                     <div class="form-control-material ">
-                        <input id="passwordConfirmation " type="password " class="form-control " placeholder="Password Confirmation ">
-                        <label for="passwordConfirmation ">Re-type password</label>
+                        <input id="password" ng-model="user.password" type="password " class="form-control " placeholder="Password ">
+                        <label for="password">Password</label>
                     </div>
-                </div>
-                <div class="form-group text-center ">
-                    <div class="checkbox ">
-                        <input type="checkbox " id="agree "/>
-                        <label for="agree ">* I Agree with <a href="# ">Terms &amp; Conditions!</a></label>
-                    </div>
-                </div>
+                </div>                
                 <div class="text-center ">
-                    <a ui-sref="website-student.dashboard " class="btn btn-primary ">Create an Account</a>
+                    <a class="btn btn-primary" ng-click="createUser()">Create an Account</a>
                 </div>
 			</form>
 			<!-- //Signup -->

@@ -74,8 +74,9 @@
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="main-nav">
-      <ul class="nav navbar-nav navbar-nav-margin-left">
+
+    <div class="collapse navbar-collapse " id="main-nav">
+      <ul class="nav navbar-nav navbar-nav-margin-left ng-hide">
         <li class="dropdown" ng-class="{ 'active': $state.includes('website-pages') || $state.includes('website-forum') || $state.includes('website-blog') }">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pages <span class="caret"></span></a>
           <ul class="dropdown-menu">
@@ -137,7 +138,7 @@
         </li>
       </ul>
       <div class="navbar-right">
-        <ul class="nav navbar-nav navbar-nav-bordered navbar-nav-margin-right">
+        <ul class="nav ng-hide navbar-nav navbar-nav-bordered navbar-nav-margin-right">
           <!-- user -->
           <li class="dropdown user">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -167,18 +168,7 @@
 <section class="footer-section" ng-hide="$root.loginPage">
   <div class="container">
     <div class="row">
-      <div class="col-sm-6 col-md-3">
-        <h4 class="text-headline text-light">Corporate</h4>
-        <ul class="list-unstyled">
-          <li><a href="#">About the company</a></li>
-          <li><a href="#">Company offices</a></li>
-          <li><a href="#">Partners</a></li>
-          <li><a href="#">Terms of use</a></li>
-          <li><a href="#">Privacy</a></li>
-          <li><a href="#">Contact us</a></li>
-        </ul>
-      </div>
-      <div class="col-sm-6 col-md-3">
+      <div class="col-sm-12 col-md-6">
         <h4 class="text-headline text-light">Explore</h4>
         <ul class="list-unstyled">
           <li><a href="">Courses</a></li>
@@ -208,7 +198,7 @@
         </p>
 
         <p class="text-subhead">
-          &copy; 2015 Learning App by mosaicpro.
+          &copy; 2015 Learning.
         </p>
 
       </div>
@@ -219,7 +209,7 @@
 
 <!-- Footer -->
 <footer class="footer" ng-hide="loginPage">
-  <strong>Learning</strong> v1.1.0 &copy; Copyright 2015
+  <strong>Learning</strong> Copyright 2017
 </footer>
   <!-- Inline Script for colors and config objects; used by various external scripts; -->
   <script>
