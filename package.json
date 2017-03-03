@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node app.js"
   },
-  "author": "Eric Douglas <eric.douglas.mail@gmail.com> (https://github.com/ericdouglas)",
+  "author": "",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.12.4",

@@ -8,7 +8,7 @@ var userController = function( User ) {
     var user = new User( req.body );
       user.save();
       res.status( 200 );
-      res.send( user );
+      res.send( "success" );
 
   };
 

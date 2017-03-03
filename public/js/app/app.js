@@ -6057,6 +6057,7 @@ require('./_sidebar-toggle');
                             $rootScope.loginPage = true;
 
                             $scope.user = {};
+                            $scope.user.admin = false;
 
                               $scope.createUser = function() {
                                 $http({
