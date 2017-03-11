@@ -3,13 +3,20 @@ var jwt = require('jsonwebtoken');
 var userController = function( User ) {
 
   'use strict';
-
+  var respmessage;
   var post = function( req, res ) {
     var user = new User( req.body );
-      user.save();
-      res.status( 200 );
-      res.send( "success" );
-
+      user.save(function (err) {
+          if(err) {          
+            res.status( 301 );
+            res.send( {"success": "err"} );
+          }
+          else {
+            res.status( 200 );
+            res.send( respmessage || {"success": true} );
+          }
+      });
+      
   };
 
   var get = function(req, res) {
