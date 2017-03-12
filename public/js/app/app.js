@@ -6120,7 +6120,7 @@ require('./_sidebar-toggle');
                         url: '/app-instructor',
                         templateUrl: 'website/dashboard.html',
                         controller:['$scope', '$rootScope', function($scope, $rootScope){
-                            
+                            $rootScope.loginPage = true;
                         }]
                     })
                     .state('app-instructor.dashboard', {
@@ -6130,6 +6130,7 @@ require('./_sidebar-toggle');
                             $scope.app.settings.htmlClass = htmlClass.appl3;
                             $scope.app.settings.bodyClass = '';
                             $rootScope.menuStudent = false;
+                            $rootScope.loginPage = true;
                         }]
                     })
 
@@ -6139,7 +6140,7 @@ require('./_sidebar-toggle');
                         url: '/app-student',
                         templateUrl: 'website/dashboard.html',
                         controller: ['$scope', '$rootScope', function($scope, $rootScope){
-                                  
+                            $rootScope.loginPage = true;
                         }]
                     })
                     .state('app-student.dashboard', {
@@ -6148,7 +6149,8 @@ require('./_sidebar-toggle');
                         controller: ['$scope','$rootScope', function($scope, $rootScope){
                             $scope.app.settings.htmlClass = htmlClass.appl3;
                             $scope.app.settings.bodyClass = '';
-                            $rootScope.menuStudent = true;                        
+                            $rootScope.menuStudent = true;
+                            $rootScope.loginPage = true;                        
                         }]
                     })
                     .state('app-student.messages', {
@@ -6157,14 +6159,16 @@ require('./_sidebar-toggle');
                         controller: ['$scope', function($scope){
                             $scope.app.settings.htmlClass = htmlClass.appl3;
                             $scope.app.settings.bodyClass = '';
+                            $rootScope.loginPage = false;
                         }]
                     })
                     .state('app-student.private-profile', {
                         url: '/profile',
-                        templateUrl: 'app/student-profile.html',
+                        templateUrl: 'website/profile.html',
                         controller: ['$scope', function($scope){
                             $scope.app.settings.htmlClass = htmlClass.appl3;
                             $scope.app.settings.bodyClass = '';
+                            $rootScope.loginPage = false;
                         }]
                     })
                     .state('app-student.billing', {
