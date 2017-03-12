@@ -40,6 +40,7 @@ var routes = function( User ) {
           success: true,
           token: userid,
           userRole: user[0].admin,
+          userName:user[0].userName,
           token: token
         });
       } else {

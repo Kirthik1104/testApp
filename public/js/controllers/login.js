@@ -13,11 +13,15 @@ angular.module('app')
                 };
 
 
+        $scope.$on('$stateChangeSuccess', function() {
+          $scope.isRootState = $state.is('root.home');
+          
+        });
     $scope.app.settings.htmlClass = htmlClass.websiteLogin;
     $scope.app.settings.bodyClass = 'login';
     $rootScope.loginPage = true;
 
-
+    
     function handleError(err) {
       alert('warning', 'Something went wrong :(', err.message);
     }
@@ -28,6 +32,8 @@ angular.module('app')
         userName: $scope.userName,
         password: $scope.password
       }).then(function (res) {
+        $rootScope.userName = res.data.userName;
+        $rootScope.loginPage = true;
         res.data.userRole == "Student" ? $state.go('app-student.dashboard') :  $state.go('app-instructor.dashboard');
       }).catch(handleError);
     };
@@ -39,4 +45,5 @@ angular.module('app')
       })
         .error(handleError);
     };
+
   });

@@ -6002,8 +6002,6 @@ require('./_sidebar-toggle');
                 app.constant = $provide.constant;
                 app.value = $provide.value;
 
-                $interpolateProvider.startSymbol('::');
-                $interpolateProvider.endSymbol('::');
             }
         ]);
 
@@ -6041,7 +6039,8 @@ require('./_sidebar-toggle');
                     .state('login', {
                         url: '/login',
                         templateUrl: 'website/login.html',
-                        controller: 'LoginCtrl'
+                        controller: 'LoginCtrl',
+                        controllerAs: 'vm'
                     })
                     .state('sign-up', {
                         url: '/sign-up',
@@ -6069,7 +6068,6 @@ require('./_sidebar-toggle');
 
                 $stateProvider
                     .state('website-pages', {
-                        abstract: true,
                         url: '/website-pages',
                         template: '<div ui-view class="ui-view-main" />'
                     })
@@ -6120,14 +6118,18 @@ require('./_sidebar-toggle');
                     .state('app-instructor', {
                         abstract: true,
                         url: '/app-instructor',
-                        template: '<div ui-view class="ui-view-main" />'
+                        templateUrl: 'website/dashboard.html',
+                        controller:['$scope', '$rootScope', function($scope, $rootScope){
+                            
+                        }]
                     })
                     .state('app-instructor.dashboard', {
                         url: '/dashboard',
                         templateUrl: 'website/instructor-dashboard.html',
-                        controller: ['$scope', function($scope){
+                        controller: ['$scope','$rootScope', function($scope, $rootScope){
                             $scope.app.settings.htmlClass = htmlClass.appl3;
                             $scope.app.settings.bodyClass = '';
+                            $rootScope.menuStudent = false;
                         }]
                     })
 
@@ -6135,14 +6137,18 @@ require('./_sidebar-toggle');
                     .state('app-student', {
                         abstract: true,
                         url: '/app-student',
-                        template: '<div ui-view class="ui-view-main" />'
+                        templateUrl: 'website/dashboard.html',
+                        controller: ['$scope', '$rootScope', function($scope, $rootScope){
+                                  
+                        }]
                     })
                     .state('app-student.dashboard', {
                         url: '/dashboard',
-                        templateUrl: 'website/student-dashboard.html',
-                        controller: ['$scope', function($scope){
+                        templateUrl: 'website/partial-student.html',
+                        controller: ['$scope','$rootScope', function($scope, $rootScope){
                             $scope.app.settings.htmlClass = htmlClass.appl3;
                             $scope.app.settings.bodyClass = '';
+                            $rootScope.menuStudent = true;                        
                         }]
                     })
                     .state('app-student.messages', {

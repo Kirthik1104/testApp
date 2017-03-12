@@ -63,14 +63,6 @@
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="main-nav">
         <ul class="nav navbar-nav">
-          <li class="dropdown" ng-class="{ 'active': $state.includes('app-forum') }">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Forum <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li ui-sref-active="active"><a ui-sref="app-forum.home">Forum Home</a></li>
-              <li ui-sref-active="active"><a ui-sref="app-forum.category">Forum Category</a></li>
-              <li ui-sref-active="active"><a ui-sref="app-forum.thread">Forum Thread</a></li>
-            </ul>
-          </li>
           <li class="dropdown" ng-class="{ 'active': $state.includes('app-courses') }">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Courses <span class="caret"></span></a>
             <ul class="dropdown-menu">
@@ -79,7 +71,7 @@
               <li ui-sref-active="active"><a ui-sref="app-courses.course">Course Details</a></li>
             </ul>
           </li>
-          <li class="dropdown" ng-class="{ 'active': $state.includes('app-student') }">
+          <li class="dropdown" ng-show="menuStudent">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Student <span class="caret"></span></a>
             <ul class="dropdown-menu">
               <li ui-sref-active="active"><a ui-sref="app-student.dashboard">Dashboard</a></li>
@@ -92,7 +84,7 @@
               <li ui-sref-active="active"><a ui-sref="app-student.messages">Messages</a></li>
             </ul>
           </li>
-          <li class="dropdown" ng-class="{ 'active': $state.includes('app-instructor') }">
+          <li class="dropdown" ng-show="!menuStudent">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Instructor <span class="caret"></span></a>
             <ul class="dropdown-menu">
               <li ui-sref-active="active"><a ui-sref="app-instructor.dashboard">Dashboard</a></li>
@@ -136,7 +128,7 @@
                   <img src="images/people/50/guy-6.jpg" alt="people" class="img-circle" width="30">
                 </div>
                 <div class="media-body">
-                  <a href="#">Bill</a> posted <a href="#">a comment</a> on Adrian's recent <a href="#">post</a>.
+                  <a href="#">{{userName}}</a> posted <a href="#">a comment</a> on Adrian's recent <a href="#">post</a>.
                   <br/>
                   <span class="text-caption text-muted">3 hrs ago</span>
                 </div>
@@ -164,7 +156,7 @@
           <!-- User -->
           <li class="dropdown">
             <a href="#" class="dropdown-toggle user" data-toggle="dropdown">
-              <img src="images/people/110/guy-5.jpg" alt="Bill" class="img-circle" width="40" /> Bill <span class="caret"></span>
+              <img src="images/people/110/guy-5.jpg" alt="Bill" class="img-circle" width="40" />{{userName}}<span class="caret"></span>
             </a>
             <ul class="dropdown-menu" role="menu">
               <li ui-sref-active="active"><a ui-sref="app-student.private-profile">Account</a></li>
