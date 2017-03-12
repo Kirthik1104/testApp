@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('app')
-  .controller('LoginCtrl', function ($scope, alert, auth, $auth, $rootScope) {
+  .controller('LoginCtrl', function ($scope, alert, $state, auth, $auth, $rootScope) {
     var htmlClass = {
                     website: 'transition-navbar-scroll top-navbar-xlarge bottom-footer',
                     websitePricing: 'top-navbar-xlarge bottom-footer app-desktop',
@@ -24,12 +24,11 @@ angular.module('app')
 
 
     $scope.submit = function () {
-
       $auth.login({
         userName: $scope.userName,
         password: $scope.password
       }).then(function (res) {
-        alert('success', 'Welcome', 'Thanks for coming back, ' + res + '!');
+        res.data.userRole == "Student" ? $state.go('app-student.dashboard') :  $state.go('app-instructor.dashboard');
       }).catch(handleError);
     };
 

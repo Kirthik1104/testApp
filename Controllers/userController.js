@@ -40,7 +40,7 @@ var userController = function( User ) {
         });*/
     console.log(decoded.userid)
     var obj = {};
-    if (decoded.admin == "false" ) {
+    if (decoded.admin != "admin" ) {
         obj = {_id: decoded.userid};
     }
 

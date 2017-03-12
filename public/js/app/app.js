@@ -6050,9 +6050,7 @@ require('./_sidebar-toggle');
                             $scope.app.settings.htmlClass = htmlClass.websiteLogin;
                             $scope.app.settings.bodyClass = 'login';
                             $rootScope.loginPage = true;
-
-                            $scope.user = {};
-                            $scope.user.admin = false;
+                            $scope.roles = ["Student", "Instructor"];                        
 
                               $scope.createUser = function() {
                                 $http({
@@ -6119,67 +6117,19 @@ require('./_sidebar-toggle');
 
                 
                 $stateProvider
-                    .state('essential', {
+                    .state('app-instructor', {
                         abstract: true,
-                        url: '/essential',
+                        url: '/app-instructor',
                         template: '<div ui-view class="ui-view-main" />'
                     })
-                    .state('essential.buttons', {
-                        url: '/buttons',
-                        templateUrl: 'essential/buttons.html',
+                    .state('app-instructor.dashboard', {
+                        url: '/dashboard',
+                        templateUrl: 'website/instructor-dashboard.html',
                         controller: ['$scope', function($scope){
-                            $scope.app.settings.htmlClass = htmlClass.website;
+                            $scope.app.settings.htmlClass = htmlClass.appl3;
                             $scope.app.settings.bodyClass = '';
                         }]
                     })
-                    .state('essential.icons', {
-                        url: '/icons',
-                        templateUrl: 'essential/icons.html',
-                        controller: ['$scope', function($scope){
-                            $scope.app.settings.htmlClass = htmlClass.website;
-                            $scope.app.settings.bodyClass = '';
-                        }]
-                    })
-                    .state('essential.progress', {
-                        url: '/progress',
-                        templateUrl: 'essential/progress.html',
-                        controller: ['$scope', function($scope){
-                            $scope.app.settings.htmlClass = htmlClass.website;
-                            $scope.app.settings.bodyClass = '';
-                        }]
-                    })
-                    .state('essential.grid', {
-                        url: '/grid',
-                        templateUrl: 'essential/grid.html',
-                        controller: ['$scope', function($scope){
-                            $scope.app.settings.htmlClass = htmlClass.website;
-                            $scope.app.settings.bodyClass = '';
-                        }]
-                    })
-                    .state('essential.forms', {
-                        url: '/forms',
-                        templateUrl: 'essential/forms.html',
-                        controller: ['$scope', function($scope){
-                            $scope.app.settings.htmlClass = htmlClass.website;
-                            $scope.app.settings.bodyClass = '';
-                        }]
-                    })
-                    .state('essential.tables', {
-                        url: '/tables',
-                        templateUrl: 'essential/tables.html',
-                        controller: ['$scope', function($scope){
-                            $scope.app.settings.htmlClass = htmlClass.website;
-                            $scope.app.settings.bodyClass = '';
-                        }]
-                    })
-                    .state('essential.tabs', {
-                        url: '/tabs',
-                        templateUrl: 'essential/tabs.html',
-                        controller: ['$scope', function($scope){
-                            $scope.app.settings.htmlClass = htmlClass.website;
-                            $scope.app.settings.bodyClass = '';
-                        }]
-                    });
 
                 $stateProvider
                     .state('app-student', {
@@ -6189,7 +6139,7 @@ require('./_sidebar-toggle');
                     })
                     .state('app-student.dashboard', {
                         url: '/dashboard',
-                        templateUrl: 'app/student-dashboard.html',
+                        templateUrl: 'website/student-dashboard.html',
                         controller: ['$scope', function($scope){
                             $scope.app.settings.htmlClass = htmlClass.appl3;
                             $scope.app.settings.bodyClass = '';

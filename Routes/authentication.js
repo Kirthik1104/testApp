@@ -28,18 +28,26 @@ var routes = function( User ) {
           expiresInMinutes: 1440 // expires in 24 hours
         });*/
 
-        console.log("user[0]._id"+user[0]._id+"user[0].userName"+user[0].userName+"user[0].admin"+user[0].admin);
+      console.log("user[0]._id"+user[0]._id+"user[0].userName"+user[0].userName+"user[0].admin"+user[0].admin);
       var userid = user[0]._id;
       var tempUser = { userid:user[0]._id, userName: user[0].userName, admin: user[0].admin };
       var token = jwt.sign(tempUser, "MYSECRETKEY007", {
       expiresIn: 1440 // expires in 24 hours
       });
         // return the information including token as JSON
-        res.json({
+        res.status( 200 );
+        res.send({
           success: true,
-          message: 'Enjoy your token!'+userid,
+          token: userid,
+          userRole: user[0].admin,
           token: token
         });
+      } else {
+        res.status( 301 );
+        res.send({
+          success: false,
+        });
+
       }   
 
     }
