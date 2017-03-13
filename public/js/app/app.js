@@ -6039,8 +6039,7 @@ require('./_sidebar-toggle');
                     .state('login', {
                         url: '/login',
                         templateUrl: 'website/login.html',
-                        controller: 'LoginCtrl',
-                        controllerAs: 'vm'
+                        controller: 'LoginCtrl'
                     })
                     .state('sign-up', {
                         url: '/sign-up',
@@ -6048,7 +6047,7 @@ require('./_sidebar-toggle');
                         controller: ['$scope','$rootScope', '$http', '$state', function($scope, $rootScope, $http, $state){
                             $scope.app.settings.htmlClass = htmlClass.websiteLogin;
                             $scope.app.settings.bodyClass = 'login';
-                            $rootScope.loginPage = true;
+                            //$rootScope.loginPage = true;
                             $scope.roles = ["Student", "Instructor"];                        
 
                               $scope.createUser = function() {
@@ -6079,6 +6078,19 @@ require('./_sidebar-toggle');
                             $scope.app.settings.bodyClass = '';
                         }]
                     })
+
+                    .state('website-pages.contact', {
+                        url: '/contact',
+                        templateUrl: 'website/contact.html',
+                        controller: ['$scope', '$rootScope', function($scope, $rootScope){
+                            $scope.app.settings.htmlClass = htmlClass.website;
+                            $scope.app.settings.bodyClass = '';
+                            
+                            $rootScope.loginPage= false;
+                            $scope.beforLogin = true;
+                        }]
+                    })
+
                     .state('website-pages.home', {
                         url: '/home',
                         templateUrl: 'website/home.html',
@@ -6104,14 +6116,7 @@ require('./_sidebar-toggle');
                             $scope.app.settings.bodyClass = 'survey';
                         }]
                     })
-                    .state('website-pages.contact', {
-                        url: '/contact',
-                        templateUrl: 'website/contact.html',
-                        controller: ['$scope', function($scope){
-                            $scope.app.settings.htmlClass = htmlClass.website;
-                            $scope.app.settings.bodyClass = '';
-                        }]
-                    });
+                    
 
                 
                 $stateProvider
