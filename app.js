@@ -36,6 +36,31 @@ courseRouter = require( './Routes/courseRoutes' )( Course );
 app.use( '/api/authenticat', authenticatRouter);
 app.use( '/api/user', userRouter);
 app.use( '/api/course', courseRouter );
+
+
+
+app.post("/contact", function(req, res){
+
+var api_key = 'key-93f1d3a63817c1379200fe33c95165d6';
+var domain = 'sandbox0f7199227c3c441b8064292ffa8cd1ab.mailgun.org';
+var mailgun = require('mailgun-js')({apiKey: api_key, domain: domain});
+
+var data = {
+  from: 'akshay<postmaster@sandbox0f7199227c3c441b8064292ffa8cd1ab.mailgun.org>',
+  to: 'akshaymhatre89@yahoo.in',
+  subject: 'req.body.email',
+  text: 'req.body.message'
+};
+
+mailgun.messages().send(data, function (error, body) {
+  console.log(body);
+  if(!error)
+  res.send({"success":true});
+else
+res.send({"success":false});
+});
+
+})
 /*
 app.get( '/', function( req, res ) {
   res.send( 'welcome to my API' );

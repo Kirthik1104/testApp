@@ -6082,12 +6082,31 @@ require('./_sidebar-toggle');
                     .state('website-pages.contact', {
                         url: '/contact',
                         templateUrl: 'website/contact.html',
-                        controller: ['$scope', '$rootScope', function($scope, $rootScope){
+                        controller: ['$scope', '$rootScope', '$http', function($scope, $rootScope, $http){
                             $scope.app.settings.htmlClass = htmlClass.website;
                             $scope.app.settings.bodyClass = '';
                             
                             $rootScope.loginPage= false;
                             $scope.beforLogin = true;
+
+
+                            $scope.sendData = function() {
+                                $http({
+                                    url: 'http://localhost:3001/contact',
+                                    method: "POST",
+                                    data: { 'message' : $scope.user.message, 'email': $scope.user.firstName}
+                                })
+                                .then(function(response) {
+                                        if(response.data.success == true)
+                                        {
+                                            $scope.user = "";
+                                            alert("Message sent successfully")
+                                        }
+                                }, 
+                                function(response) { // optional
+                                        // failed
+                                });
+                            }
                         }]
                     })
 
