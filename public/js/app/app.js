@@ -1,3 +1,5 @@
+var app;
+
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({"./src/js/themes/angular/app.js":[function(require,module,exports){
 // Essentials
 require('essential/js/main');
@@ -5986,11 +5988,10 @@ require('./_sidebar-toggle');
         'ngTouch',
         'ui.router',
         'ui.utils',
-        'ui.jq',
-        'satellizer'
+        'ui.jq'
     ]);
 
-    var app = angular.module('app')
+    app = angular.module('app')
         .config(
         [ '$controllerProvider', '$compileProvider', '$filterProvider', '$provide', '$interpolateProvider',
             function ($controllerProvider, $compileProvider, $filterProvider, $provide, $interpolateProvider) {
@@ -6005,11 +6006,26 @@ require('./_sidebar-toggle');
             }
         ]);
 
+    app.factory('httpRequestInterceptor', function () {
+      return {
+        request: function (config) {
+          config.headers['x-access-token'] = localStorage.getItem("auth-token");
+          return config;
+        }
+      };
+    });
+
+    app.config(function ($httpProvider) {
+        $httpProvider.interceptors.push('httpRequestInterceptor');
+    });    
+
+
+
 })();
 },{}],"/Code/html/themes/learning-1.1.0/src/js/themes/angular/angular/config.router.js":[function(require,module,exports){
 (function(){
     'use strict';
-    angular.module('app').constant('API_URL', 'http://localhost:3001/')
+    angular.module('app').constant('API_URL', 'http://localhost:3001')
 
     angular.module('app')
         .run([ '$rootScope', '$state', '$stateParams',
@@ -6019,8 +6035,8 @@ require('./_sidebar-toggle');
             }
         ])
         .config(
-        [ '$stateProvider', '$urlRouterProvider', '$authProvider', 'API_URL',
-            function ($stateProvider, $urlRouterProvider, $authProvider, API_URL) {
+        [ '$stateProvider', '$urlRouterProvider', 'API_URL',
+            function ($stateProvider, $urlRouterProvider, API_URL) {
 
                 var htmlClass = {
                     website: 'transition-navbar-scroll top-navbar-xlarge bottom-footer',
@@ -6039,7 +6055,7 @@ require('./_sidebar-toggle');
                     .state('login', {
                         url: '/login',
                         templateUrl: 'website/login.html',
-                        controller: 'LoginCtrl'
+                        controller: 'LoginCtrl1'
                     })
                     .state('sign-up', {
                         url: '/sign-up',
@@ -6135,14 +6151,12 @@ require('./_sidebar-toggle');
                             $scope.app.settings.bodyClass = 'survey';
                         }]
                     })
-                    
 
-                
                 $stateProvider
                     .state('app-instructor', {
                         abstract: true,
                         url: '/app-instructor',
-                        templateUrl: 'website/dashboard.html',
+                        templateUrl: 'website/dashboardinstructor.html',
                         controller:['$scope', '$rootScope', function($scope, $rootScope){
                             $rootScope.loginPage = true;
                         }]
@@ -6150,6 +6164,16 @@ require('./_sidebar-toggle');
                     .state('app-instructor.dashboard', {
                         url: '/dashboard',
                         templateUrl: 'website/instructor-dashboard.html',
+                        controller: 'instdashboard'
+                    })
+                    .state('app-instructor.addCourse', {
+                        url: '/addCourse',
+                        templateUrl: 'website/instructor-add-course.html',
+                        controller: 'addCourse'
+                    })
+                    .state('app-instructor.createcourses', {
+                        url: '/createcourses',
+                        templateUrl: 'website/instructor-createcourses.html',
                         controller: ['$scope','$rootScope', function($scope, $rootScope){
                             $scope.app.settings.htmlClass = htmlClass.appl3;
                             $scope.app.settings.bodyClass = '';
@@ -6162,7 +6186,7 @@ require('./_sidebar-toggle');
                     .state('app-student', {
                         abstract: true,
                         url: '/app-student',
-                        templateUrl: 'website/dashboard.html',
+                        templateUrl: 'website/dashboardstudent.html',
                         controller: ['$scope', '$rootScope', function($scope, $rootScope){
                             $rootScope.loginPage = true;
                         }]
@@ -6205,7 +6229,7 @@ require('./_sidebar-toggle');
                     })
                     .state('app-student.courses', {
                         url: '/courses',
-                        templateUrl: 'app/student-courses.html',
+                        templateUrl: 'webapp/student-courses.html',
                         controller: ['$scope', function($scope){
                             $scope.app.settings.htmlClass = htmlClass.appl1r3;
                             $scope.app.settings.bodyClass = '';
@@ -6581,3 +6605,4 @@ require('./angular/directives/flotchart-earnings');
 
 })(jQuery, window);
 },{}]},{},["./src/js/themes/angular/app.js"]);
+console.log(app);

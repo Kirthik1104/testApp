@@ -1,11 +1,66 @@
 var express = require( 'express' );
+var jwt = require('jsonwebtoken');
 
 var routes = function( Course ) {
 
-  var courseRouter = express.Router();
-  var courseController = require( '../Controllers/courseController' )( Course );
+var courseRouter = express.Router();
+var courseController = require( '../Controllers/courseController' )( Course );
 
-  courseRouter.use( '/:courseId', function( req, res, next ) {
+courseRouter.route( '/:courseId' )
+    .get( function( req, res ) {
+      var returnCourse = req.course.toJSON();
+      var newLink = 'http://' + req.headers.host + '/api/courses/?genre=' + returnCourse.genre;
+
+      returnCourse.links = {};
+      returnCourse.links.filterByThisGenre = newLink.replace( ' ', '%20' );
+      res.json( returnCourse ); 
+
+    });
+
+courseRouter.use(function(req, res, next) {
+  // check header or url parameters or post parameters for token
+  var token = req.body.token || req.query.token || req.headers['x-access-token'];
+  // decode token
+  if (token) {
+    // verifies secret and checks exp
+    jwt.verify(token, "MYSECRETKEY007", function(err, decoded) {      
+      if (err) {
+        return res.status(403).send({ 
+          success: false, 
+          message: "Failed to authenticate token." 
+        });
+
+      } else {
+        // if everything is good, save to request for use in other routes
+    
+        if(decoded.admin == "Instructor") {    
+          req.body.creatorid = decoded.userid;
+          next();
+        }
+        else {   
+          return res.status(403).send({ 
+            success: false, 
+            message: "You don't have access." 
+          });
+        }
+      }
+    });
+
+  } else {
+
+    // if there is no token
+    // return an error
+    return res.status(403).send({ 
+      success: false, 
+      message: 'No token provided.' 
+    });
+    
+  }
+});
+
+courseRouter.route( '/' ).get( courseController.get );
+
+courseRouter.use( '/:courseId', function( req, res, next ) {
   
     Course.findById( req.params.courseId, function( err, course ) {
     
@@ -14,7 +69,6 @@ var routes = function( Course ) {
         res.status( 500 ).send( err );
       
       } else if ( course ) {
-      
         req.course = course;
         next();
       
@@ -28,30 +82,18 @@ var routes = function( Course ) {
   
   });
 
-  courseRouter.route( '/' )
+
+courseRouter.route( '/' )
     .post( courseController.post )
-    .get( courseController.get );
-
-  courseRouter.route( '/:courseId' )
-    .get( function( req, res ) {
-
-      var returnCourse = req.course.toJSON();
-      var newLink = 'http://' + req.headers.host + '/api/courses/?genre=' + returnCourse.genre;
-
-      returnCourse.links = {};
-      returnCourse.links.filterByThisGenre = newLink.replace( ' ', '%20' );
 
 
-      res.json( returnCourse ); 
-
-    })
-    .put( function( req, res ) {
+courseRouter.route( '/:courseId' ).put( function( req, res ) {
     
      
       req.course.title = req.body.title;
-      req.course.author = req.body.author;
+      req.course.instructor = req.body.instructor;
       req.course.genre = req.body.genre;
-      req.course.read = req.body.read;
+      req.course.duration = req.body.duration;
 
       req.course.save( function( err ) {
       
