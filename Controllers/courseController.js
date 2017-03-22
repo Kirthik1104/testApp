@@ -24,6 +24,7 @@ var courseController = function( Course ) {
 
 
   var get = function(req, res) {
+    console.log("hemant")
     var token = req.body.token || req.query.token || req.headers['x-access-token'];
     if (token) {        
         var decoded;    
@@ -53,49 +54,20 @@ var courseController = function( Course ) {
    }
   };
 
-  var get1 = function( req, res ) {
-  
-    var query = {};
-
-    if ( req.query.genre ) {
-    
-      query.genre = req.query.genre;
-
-    }
-
-    Course.find( query, function( err, course ) {
-    
-      if ( err ) {
-
-        res.status( 500 ).send( err );
-
-      } else {
-
-        var returnCourse = [];
-
-        course
-          .forEach( function( element, index, array ) {
-          
-            var newCourse = element.toJSON();
-
-            newCourse.links = {};
-            newCourse.links.self = 'http://' + req.headers.host + '/api/course/' + newCourse._id;
-
-            returnCourse.push( newCourse );
-          
-          });
-
-        res.json( returnCourse );
-
-      }
-    
+  var getAll = function(req, res) {
+    console.log("hemant1");
+    Course.find({}, function(err, course) {    
+      return res.status(200).send({ 
+        success: true,
+        course:course
+      });
     });
-  
   };
 
   return {
     post : post,
-    get  : get
+    get  : get,
+    getAll : getAll
   };
 
 };

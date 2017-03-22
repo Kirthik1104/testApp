@@ -6,7 +6,7 @@ var routes = function( Course ) {
 var courseRouter = express.Router();
 var courseController = require( '../Controllers/courseController' )( Course );
 
-courseRouter.route( '/:courseId' )
+/*courseRouter.route( '/:courseId' )
     .get( function( req, res ) {
       var returnCourse = req.course.toJSON();
       var newLink = 'http://' + req.headers.host + '/api/courses/?genre=' + returnCourse.genre;
@@ -15,7 +15,33 @@ courseRouter.route( '/:courseId' )
       returnCourse.links.filterByThisGenre = newLink.replace( ' ', '%20' );
       res.json( returnCourse ); 
 
+});
+*/
+courseRouter.route('/getAll').post(courseController.getAll)
+
+courseRouter.use( '/:courseId', function( req, res, next ) {
+      //var ObjectId = require('mongodb').ObjectID(req.params.courseId);
+      Course.findOne({_id:req.params.courseId}, function( err, course ) {
+      console.log(JSON.stringify(course));
+      if ( course ) {   
+        
+        return res.status(200).send({ 
+          success: true, 
+          course: course 
+        });
+      } else {
+        return res.status(404).send({ 
+          success: false, 
+          message: 'no course found' 
+        });
+      
+      }
+    
     });
+  
+  });
+
+
 
 courseRouter.use(function(req, res, next) {
   // check header or url parameters or post parameters for token
@@ -59,28 +85,6 @@ courseRouter.use(function(req, res, next) {
 });
 
 courseRouter.route( '/' ).get( courseController.get );
-
-courseRouter.use( '/:courseId', function( req, res, next ) {
-  
-    Course.findById( req.params.courseId, function( err, course ) {
-    
-      if ( err ) {
-      
-        res.status( 500 ).send( err );
-      
-      } else if ( course ) {
-        req.course = course;
-        next();
-      
-      } else {
-        
-        re.status( 404 ).send( 'no course found' );
-      
-      }
-    
-    });
-  
-  });
 
 
 courseRouter.route( '/' )

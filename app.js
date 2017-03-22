@@ -1,8 +1,8 @@
-var express = require( 'express' );
+express = require( 'express' );
 var mongoose = require( 'mongoose' );
 var bodyParser = require( 'body-parser' );
 var config = require('./config');
-
+var server_ip_address = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1'
 
 var db;
 
@@ -20,10 +20,13 @@ var Course = require( './models/courseModels' );
 
 app  = express();
 
+server = require('http').createServer(app)
+io = require('socket.io').listen(server)
+
 app.use(express.static('public'))
 var port = config.PORT;
 
-
+var config = require('./chatapp');
 
 app.use( bodyParser.urlencoded({ extended : true }));
 app.use( bodyParser.json());
@@ -32,10 +35,12 @@ app.use( bodyParser.json());
 authenticatRouter = require( './Routes/authentication' )( User )
 userRouter = require( './Routes/userRoutes' )( User );
 courseRouter = require( './Routes/courseRoutes' )( Course );
+//allcourseRouter = require( './Routes/allcourseRoutes' )( Course );
 
 app.use( '/api/authenticat', authenticatRouter);
 app.use( '/api/user', userRouter);
 app.use( '/api/course', courseRouter );
+//app.use( '/api/getallcourses', allcourseRouter );
 
 
 
@@ -66,9 +71,14 @@ app.get( '/', function( req, res ) {
   res.send( 'welcome to my API' );
 });
 */
-app.listen( port, function() {
+/*app.listen( port, function() {
   console.log( 'Running at port:', port );
 });
+*/
+server.listen(3001,server_ip_address,function () {
+  console.log("Listening on " + server_ip_address + ", port " + 3001)
+})
+
 
 module.exports = app;
 
