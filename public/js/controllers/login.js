@@ -51,7 +51,16 @@ angular.module('app')
     $scope.submit = function() {
       UserFactory.login($scope.userName, $scope.password).then(function success(response) {
         vm.user = response.data.user;
-        response.data.userRole == "Student" ? $state.go('app-student.dashboard') :  $state.go('app-instructor.dashboard');
+        if(response.data.userRole == "Student") {
+           $state.go('app-student.dashboard');
+        }
+        else if(response.data.userRole == "Instructor")  {
+           $state.go('app-instructor.dashboard');
+        }
+        else if(response.data.userRole == "Admin")
+        {
+           $state.go('app-admin.dashboard');
+        }
       }, handleError);
     }
 

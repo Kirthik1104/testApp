@@ -65,11 +65,7 @@
         <ul class="nav navbar-nav">
           <li class="dropdown" ng-class="{ 'active': $state.includes('app-courses') }">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Courses <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li ui-sref-active="active"><a ui-sref="app-courses.grid">Courses Grid</a></li>
-              <li ui-sref-active="active"><a ui-sref="app-courses.list">Courses List</a></li>
-              <li ui-sref-active="active"><a ui-sref="app-courses.course">Course Details</a></li>
-            </ul>
+            
           </li>
           <li class="dropdown" ng-show="menuStudent">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Student <span class="caret"></span></a>
@@ -77,11 +73,9 @@
               <li ui-sref-active="active"><a ui-sref="app-student.dashboard">Dashboard</a></li>
               <li ui-sref-active="active"><a ui-sref="app-student.courses">My Courses</a></li>
               <li ui-sref-active="active"><a ui-sref="app-student.take-course">Take Course</a></li>
-              <li ui-sref-active="active"><a ui-sref="app-student.course-forums">Course Forums</a></li>
-              <li ui-sref-active="active"><a ui-sref="app-student.take-quiz">Take Quiz</a></li>
               <li ui-sref-active="active"><a ui-sref="app-student.private-profile">Edit Profile</a></li>
               <li ui-sref-active="active"><a ui-sref="app-student.billing">Edit Billing</a></li>
-              <li ui-sref-active="active"><a ui-sref="app-student.messages">Messages</a></li>
+            
             </ul>
           </li>
           <li class="dropdown" ng-show="!menuStudent">
@@ -93,8 +87,7 @@
               <li ui-sref-active="active"><a ui-sref="app-instructor.earnings">Earnings</a></li>
               <li ui-sref-active="active"><a ui-sref="app-instructor.statement">Statement</a></li>
               <li ui-sref-active="active"><a ui-sref="app-instructor.private-profile">Edit Profile</a></li>
-              <li ui-sref-active="active"><a ui-sref="app-instructor.billing">Edit Billing</a></li>
-              <li ui-sref-active="active"><a ui-sref="app-instructor.messages">Messages</a></li>
+              
             </ul>
           </li>
         </ul>
@@ -199,22 +192,7 @@
             <li ui-sref-active="active"><a ui-sref="app-student.take-quiz"><span>Take Quiz</span></a></li>
           </ul>
         </li>
-        <li class="hasSubmenu" ng-class="{ 'active open': $state.includes('app-forum') }">
-          <a href="#forum-menu"><i class="fa fa-file-text-o"></i><span>Forum</span></a>
-          <ul id="forum-menu" ng-class="{ 'in': $state.includes('app-forum') }">
-            <li ui-sref-active="active"><a ui-sref="app-forum.home"><span>Forum Home</span></a></li>
-            <li ui-sref-active="active"><a ui-sref="app-forum.category"><span>Forum Category</span></a></li>
-            <li ui-sref-active="active"><a ui-sref="app-forum.thread"><span>Forum Thread</span></a></li>
-          </ul>
-        </li>
-        <li class="hasSubmenu" ng-class="{ 'active open': $state.is('app-student.private-profile') || $state.is('app-student.billing') }">
-          <a href="#account-menu"><i class="fa fa-user"></i><span>Account</span></a>
-          <ul id="account-menu" ng-class="{ 'in': $state.is('app-student.private-profile') || $state.is('app-student.billing') }">
-            <li ui-sref-active="active"><a ui-sref="app-student.private-profile"><span>Edit Profile</span></a></li>
-            <li ui-sref-active="active"><a ui-sref="app-student.billing"><span>Edit Billing</span></a></li>
-          </ul>
-        </li>
-        <li ui-sref-active="active"><a ui-sref="app-student.messages"><i class="fa fa-comments"></i><span>Messages</span></a></li>
+      
         <li><a ui-sref="login"><i class="fa fa-sign-out"></i><span>Logout</span></a></li>
       </ul>
     </div>
@@ -249,22 +227,6 @@
             <li ui-sref-active="active"><a ui-sref="app-student.take-quiz"><span>Take Quiz</span></a></li>
           </ul>
         </li>
-        <li class="hasSubmenu" ng-class="{ 'active open': $state.includes('app-forum') }">
-          <a href="#forum-menu"><i class="fa fa-file-text-o"></i><span>Forum</span></a>
-          <ul id="forum-menu" ng-class="{ 'in': $state.includes('app-forum') }">
-            <li ui-sref-active="active"><a ui-sref="app-forum.home"><span>Forum Home</span></a></li>
-            <li ui-sref-active="active"><a ui-sref="app-forum.category"><span>Forum Category</span></a></li>
-            <li ui-sref-active="active"><a ui-sref="app-forum.thread"><span>Forum Thread</span></a></li>
-          </ul>
-        </li>
-        <li class="hasSubmenu" ng-class="{ 'active open': $state.is('app-student.private-profile') || $state.is('app-student.billing') }">
-          <a href="#account-menu"><i class="fa fa-user"></i><span>Account</span></a>
-          <ul id="account-menu" ng-class="{ 'in': $state.is('app-student.private-profile') || $state.is('app-student.billing') }">
-            <li ui-sref-active="active"><a ui-sref="app-student.private-profile"><span>Edit Profile</span></a></li>
-            <li ui-sref-active="active"><a ui-sref="app-student.billing"><span>Edit Billing</span></a></li>
-          </ul>
-        </li>
-        <li ui-sref-active="active"><a ui-sref="app-student.messages"><i class="fa fa-comments"></i><span>Messages</span></a></li>
         <li><a ui-sref="login"><i class="fa fa-sign-out"></i><span>Logout</span></a></li>
       </ul>
     </div>

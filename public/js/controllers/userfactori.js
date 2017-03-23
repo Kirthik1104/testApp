@@ -3,7 +3,8 @@ app.factory('UserFactory', function UserFactory($http, API_URL, AuthTokenFactory
     return {
       login: login,
       logout: logout,
-      getUser: getUser
+      getUser: getUser,
+      getAllUser: getAllUser
     };
 
     function login(username, password) {
@@ -23,6 +24,14 @@ app.factory('UserFactory', function UserFactory($http, API_URL, AuthTokenFactory
     function getUser() {
       if (AuthTokenFactory.getToken()) {
         return $http.get(API_URL + '/me');
+      } else {
+        return $q.reject({ data: 'client has no auth token' });
+      }
+    }
+
+    function getAllUser() {
+      if (AuthTokenFactory.getToken()) {
+        return $http.get(API_URL + '/api/allusers');
       } else {
         return $q.reject({ data: 'client has no auth token' });
       }

@@ -40,7 +40,44 @@ var userController = function( User ) {
         });*/
     console.log(decoded.userid)
     var obj = {};
-    if (decoded.admin != "admin" ) {
+    if (decoded.admin != "Admin" ) {
+        obj = {_id: decoded.userid};
+    }
+
+
+    User.find(obj, function(err, users) {
+      res.json(users);
+    });
+   }
+  };
+
+  var getAll = function(req, res) {
+    console.log("hi");
+    var token = req.body.token || req.query.token || req.headers['x-access-token'];
+    if (token) {
+      console.log(token);
+        var authorization = token,
+            decoded;    
+        try {
+            decoded = jwt.verify(authorization, "MYSECRETKEY007");
+            console.log(decoded);
+        } catch (e) {
+            return res.status(401).send('unauthorized');
+        }
+        var userId = decoded.id;
+        // Fetch the user by id 
+        /*User.findOne({_id: userId}).then(function(user){
+            // Do something with the user
+      
+      return res.status(200).send({
+        userName: user.userName 
+      });
+        });*/
+    
+    var obj = {};
+
+    if (decoded.admin != "Admin" ) {
+        console.log("i am in");
         obj = {_id: decoded.userid};
     }
 
@@ -78,7 +115,8 @@ var userController = function( User ) {
 
   return {
     post : post,
-    get  : get
+    get  : get,
+    getAll : getAll
   };
 
 };

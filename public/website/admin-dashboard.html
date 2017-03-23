@@ -1,0 +1,46 @@
+<!-- Wrapper required for sidebar transitions -->
+<div class="st-container padding-none">
+  <div class="st-pusher" id="content">
+    <div class="st-content">
+
+      <!-- extra div for emulating position:fixed of the menu -->
+      <div class="st-content-inner padding-none">
+
+        <div class="container-fluid">
+
+          <div class="page-section">
+            <h1 class="text-display-1">Dashboard</h1>
+          </div>
+
+          <div class="row" data-toggle="isotope">
+            <div class="item col-xs-12 col-lg-12">
+              <div class="panel panel-default paper-shadow" data-z="0.5">
+                <div class="panel-heading">
+                  <h4 class="text-headline margin-none">All Users</h4>
+                </div>
+                <ul class="list-group">
+                  <li class="list-group-item media v-middle" ng-repeat="user in Users">
+                    <div class="media-body">
+                      <a ui-sref="app-instructor.edit-course" class="text-subhead list-group-link">{{user.userName}}</a>                  
+                    </div>
+                    
+                  </li>
+                  
+                </ul>
+              
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+      <!-- /st-content-inner -->
+
+    </div>
+    <!-- /st-content -->
+
+  </div>
+  <!-- /st-pusher -->
+</div>
+<!-- /st-container -->

@@ -6064,7 +6064,7 @@ require('./_sidebar-toggle');
                             $scope.app.settings.htmlClass = htmlClass.websiteLogin;
                             $scope.app.settings.bodyClass = 'login';
                             //$rootScope.loginPage = true;
-                            $scope.roles = ["Student", "Instructor"];                        
+                            $scope.roles = ["Student", "Instructor", "Admin"];                  
 
                               $scope.createUser = function() {
                                 $http({
@@ -6151,6 +6151,22 @@ require('./_sidebar-toggle');
                             $scope.app.settings.bodyClass = 'survey';
                         }]
                     })
+
+                $stateProvider
+                    .state('app-admin', {
+                        abstract: true,
+                        url: '/app-admin',
+                        templateUrl: 'website/dashboardadmin.html',
+                        controller:['$scope', '$rootScope', function($scope, $rootScope){
+                            $rootScope.loginPage = true;
+                        }]
+                    })
+                    .state('app-admin.dashboard', {
+                        url: '/dashboard',
+                        templateUrl: 'website/admin-dashboard.html',
+                        controller: 'admindashboard'
+                    })
+ 
 
                 $stateProvider
                     .state('app-instructor', {

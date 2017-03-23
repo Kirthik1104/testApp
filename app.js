@@ -35,13 +35,15 @@ app.use( bodyParser.json());
 authenticatRouter = require( './Routes/authentication' )( User )
 userRouter = require( './Routes/userRoutes' )( User );
 courseRouter = require( './Routes/courseRoutes' )( Course );
-//allcourseRouter = require( './Routes/allcourseRoutes' )( Course );
+allcourseRouter = require( './Routes/allcourseRoutes' )( Course );
+alluserRouter = require( './Routes/allusersRoute' )( User );
 
+
+app.use( '/api/allusers', alluserRouter );
+app.use( '/api/allcourse', allcourseRouter );
 app.use( '/api/authenticat', authenticatRouter);
 app.use( '/api/user', userRouter);
-app.use( '/api/course', courseRouter );
-//app.use( '/api/getallcourses', allcourseRouter );
-
+app.use( '/api/course', courseRouter);
 
 
 app.post("/contact", function(req, res){

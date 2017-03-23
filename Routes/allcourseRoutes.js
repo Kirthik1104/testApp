@@ -3,21 +3,13 @@ var jwt = require('jsonwebtoken');
 
 var routes = function( Course ) {
 
-var courseRouter = express.Router();
+var allcourseRouter = express.Router();
 var courseController = require( '../Controllers/courseController' )( Course );
 
-/*courseRouter.route( '/:courseId' )
-    .get( function( req, res ) {
-      var returnCourse = req.course.toJSON();
-      var newLink = 'http://' + req.headers.host + '/api/courses/?genre=' + returnCourse.genre;
+allcourseRouter.route( '/' ).get( courseController.getAll );
 
-      returnCourse.links = {};
-      returnCourse.links.filterByThisGenre = newLink.replace( ' ', '%20' );
-      res.json( returnCourse ); 
+  return allcourseRouter;
 
-});
-*/
-courseRouter.route('/').get(courseController.getAll)
+};
 
-}
 module.exports = routes;
