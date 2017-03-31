@@ -6,7 +6,7 @@ var routes = function( Course ) {
 var allcourseRouter = express.Router();
 var courseController = require( '../Controllers/courseController' )( Course );
 
-allcourseRouter.route( '/' ).get( courseController.getAll );
+allcourseRouter.route( '/' ).post( courseController.getAll );
 
   return allcourseRouter;
 

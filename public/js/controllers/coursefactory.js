@@ -2,7 +2,8 @@ app.factory('courseFactory', function courseFactory($http, API_URL, $q) {
     'use strict';
     return {
       createNewCourse: createNewCourse,
-      getmyCourse: getmyCourse   
+      getmyCourse: getmyCourse,
+      getallCourse: getallCourse 
     };
 
     function createNewCourse(obj) {
@@ -23,4 +24,13 @@ app.factory('courseFactory', function courseFactory($http, API_URL, $q) {
       });
     }
 
-  });
+    function getallCourse(value) {
+      
+      var config = {
+              keyword: value        
+      }
+      return $http.post(API_URL + '/api/allcourse', config).then(function success(response) {
+        return response;
+      });
+    }
+});

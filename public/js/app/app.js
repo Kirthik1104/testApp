@@ -6129,12 +6129,29 @@ require('./_sidebar-toggle');
                     .state('website-pages.home', {
                         url: '/home',
                         templateUrl: 'website/home.html',
-                        controller: ['$scope', '$rootScope', function($scope, $rootScope){
+                        controller: ['$scope', '$rootScope', '$state', function($scope, $rootScope, $state){
                             $scope.app.settings.htmlClass = htmlClass.website;
                             $scope.app.settings.bodyClass = '';
                             $rootScope.loginPage= false;
+                            $scope.submit = function(){
+                                sessionStorage.setItem("keyword", $rootScope.searchCourse);
+                                $state.go('website-pages.grid');
+                            }
+
                         }]
                     })
+
+                    .state('website-pages.grid', {
+                        url: '/grid',
+                        templateUrl: 'website/courses-grid.html',
+                        /*controller: ['$scope', function($scope){
+                            $scope.app.settings.htmlClass = htmlClass.website;
+                            $scope.app.settings.bodyClass = '';
+                        }]*/
+                        controller: 'coursectrl'
+                    })
+
+
                     .state('website-pages.pricing', {
                         url: '/pricing',
                         templateUrl: 'website/pricing.html',

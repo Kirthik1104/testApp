@@ -11405,6 +11405,8 @@ span.fancytree-node.fancytree-active .fancytree-expander {
     vertical-align: baseline;
     text-align: inherit;
   }
+
+
   .cover.overlay .overlay.overlay-full-xs .v-center {
     display: table-cell;
     width: 100%;
@@ -11428,6 +11430,7 @@ span.fancytree-node.fancytree-active .fancytree-expander {
     vertical-align: baseline;
     text-align: inherit;
   }
+  
   .cover.overlay .overlay.overlay-full-xs [class*="v-spacing-2"] {
     left: 18px;
     right: 18px;
@@ -11474,6 +11477,12 @@ span.fancytree-node.fancytree-active .fancytree-expander {
     text-align: inherit;
   }
 }
+
+@media (min-width: 1024px) {
+    .cover.overlay .overlay.overlay-full .v-center {
+      top:-300px;
+    }
+  }
 .cover.overlay .overlay[class*="overlay-bg-grey"] .text-overlay {
   color: #fff;
   text-shadow: 0 2px 0 #555;

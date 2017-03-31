@@ -29,7 +29,9 @@ var userModel = new Schema({
     admin: {
         type:String,
         required: true
-    } 
+    },
+    created : { type : Date, default : Date.now } 
+
 });
 
 

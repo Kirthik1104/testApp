@@ -54,9 +54,15 @@ var courseController = function( Course ) {
    }
   };
 
+
   var getAll = function(req, res) {
-    console.log("hemant1");
-    Course.find({}, function(err, course) {    
+    console.log(JSON.stringify(req.body))
+    Course.find({ 
+        $text: {$search: req.body.keyword } 
+       }, function(err, course) {
+      //console.log("course"+course);
+      //res.json(course);
+
       return res.status(200).send({ 
         success: true,
         course:course
