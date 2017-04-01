@@ -21,6 +21,8 @@
     "ent": "^2.2.0",
     "mongodb": "^2.2.25",
     "mongoose": "^4.0.5",
+    "multer":"*",
+    "path":"*",
     "mongoose-unique-validator": "^1.0.4"
   },
   "devDependencies": {

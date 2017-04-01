@@ -77,6 +77,6 @@ angular.module('app')
     }
 
     function handleError(response) {
-      response.data.success = false? $scope.loginerror = true : '';
+      response.data.success == false? $scope.loginerror = true : '';
     }
   });

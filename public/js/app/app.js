@@ -6047,7 +6047,7 @@ require('./_sidebar-toggle');
 
     angular.module('app').constant('LOCALES', {
     'locales': {
-        'ru_RU': 'Русский',
+        'ru_RU': 'मराठी',
         'en_US': 'English'
     },
     'preferredLocale': 'en_US'
@@ -6204,6 +6204,9 @@ require('./_sidebar-toggle');
                         templateUrl: 'website/dashboardadmin.html',
                         controller:['$scope', '$rootScope', function($scope, $rootScope){
                             $rootScope.loginPage = true;
+                            $("input[type='image']").click(function() {
+                                $("input[id='my_file']").click();
+                            });
                         }]
                     })
                     .state('app-admin.dashboard', {

@@ -4,7 +4,9 @@
 
   "englishKey" : "I am spanish",
   "views.Fork me on": "Создай Fork на",
-  "loginbuttonkey" : "авторизоваться",
+  "loginbuttonkey" : "लॉग-इन",
+  "searchbuttonkey" : "शोध",
+  "searchPlaceholderkey": "कोर्स शोध",
   "views.index.Home": "Главная",
   "views.index.About": "Обо мне",
   "views.index.Contact": "Контакты",

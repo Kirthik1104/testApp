@@ -5,6 +5,8 @@
   "englishKey" : "I am english",
   "views.Fork me on": "Fork me on",
   "loginbuttonkey" : "login",
+  "searchbuttonkey" : "Search",
+  "searchPlaceholderkey": "Search Courses",
   "views.index.Home": "Home",
   "views.index.About": "About",
   "views.index.Contact": "Contact",
