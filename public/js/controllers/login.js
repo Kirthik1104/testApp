@@ -44,24 +44,31 @@ angular.module('app')
     var vm = this;
 
     // initialization
-    UserFactory.getUser().then(function success(response) {
+    /*UserFactory.getUser().then(function success(response) {
       vm.user = response.data;
-    });
+    });*/
 
     $scope.submit = function() {
-      UserFactory.login($scope.userName, $scope.password).then(function success(response) {
-        vm.user = response.data.user;
-        if(response.data.userRole == "Student") {
-           $state.go('app-student.dashboard');
-        }
-        else if(response.data.userRole == "Instructor")  {
-           $state.go('app-instructor.dashboard');
-        }
-        else if(response.data.userRole == "Admin")
-        {
-           $state.go('app-admin.dashboard');
-        }
-      }, handleError);
+      loginform.$submitted;
+      if($scope.loginform.$valid) 
+     {   UserFactory.login($scope.userName, $scope.password).then(function success(response) {
+          vm.user = response.data.user;
+          if(response.data.userRole == "Student") {
+             $state.go('app-student.dashboard');
+          }
+          else if(response.data.userRole == "Instructor")  {
+             $state.go('app-instructor.dashboard');
+          }
+          else if(response.data.userRole == "Admin")
+          {
+             $state.go('app-admin.dashboard');
+          }
+          else if(!response.data.success)
+          {
+             $scope.loginerror = true;
+          }
+        }, handleError);
+     }
     }
 
     $scope.logout = function() {
@@ -70,6 +77,6 @@ angular.module('app')
     }
 
     function handleError(response) {
-      alert('Error: ' + response.data);
+      response.data.success = false? $scope.loginerror = true : '';
     }
   });

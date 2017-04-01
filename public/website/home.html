@@ -9,8 +9,7 @@
         <input class="form-control" ng-model="$root.searchCourse" id="searchCourse" type="text" style="width: 500px; margin: 0 auto;" placeholder="Search course"/>
 
         <br/>
-        <input type="submit" ng-click="submit()" class="btn-primary btn-lg" value="SEARCH"/>
-    
+        <input type="submit" ng-disabled="!$root.searchCourse" ng-click="submit()" class="btn-primary btn-lg" value="SEARCH"/>
     </div>
 
     <div class="v-center clearfix hide">

@@ -6092,16 +6092,18 @@ require('./_sidebar-toggle');
                             //$rootScope.loginPage = true;
                             $scope.roles = ["Student", "Instructor", "Admin"];                  
 
-                              $scope.createUser = function() {
-                                $http({
-                                  url: 'http://localhost:3001/api/user',
-                                  method: 'POST',
-                                  data: $scope.user
-                                }).then(function(response) {                                
-                                    $state.go('login');
-                                }, function(error) {
-                                    alert(error.message);
-                                });
+                              $scope.submit = function() {
+                                if($scope.registration.$valid) { 
+                                    $http({
+                                      url: 'http://localhost:3001/api/user',
+                                      method: 'POST',
+                                      data: $scope.user
+                                    }).then(function(response) {                                
+                                        $state.go('login');
+                                    }, function(error) {
+                                        alert(error.message);
+                                    });
+                                }
                               }
 
                         }]

@@ -6,24 +6,28 @@
         <h1 class="text-display-1 text-center margin-bottom-none">Sign In</h1>
         <div ng-include="loginPage"></div>{{isRootState}}
         <img src="images/people/110/guy-5.jpg" class="img-circle width-80">
+        <form  name="loginform" novalidate="" ng-submit="submit()">
         <div class="panel-body">
           <div class="form-group">
             <div class="form-control-material">
-              <input class="form-control" ng-model="userName" id="username" type="text" placeholder="Username">
+              <input class="form-control" name="userName" ng-model="userName" ng-change="loginerror=false" id="username" required type="text" placeholder="Username">
               <label for="username">Username</label>
             </div>
+            <div class="errormsg" ng-show="loginform.userName.$invalid &amp;&amp; (loginform.userName.$dirty || loginform.$submitted)">Please enter your UserName</div>
           </div>
           <div class="form-group">
             <div class="form-control-material">
-              <input class="form-control" id="password" ng-model="password" type="password" placeholder="Enter Password">
+              <input class="form-control" id="password" ng-model="password" type="password" ng-change="loginerror=false" required name="password" placeholder="Enter Password">
               <label for="password">Password</label>
             </div>
+            <div class="errormsg" ng-show="loginform.password.$invalid &amp;&amp; (loginform.password.$dirty  || loginform.$submitted)">Please enter your Password</div>
+            <div ng-show="loginerror" class="errormsg"> User Name or Password is wrong </div>
           </div>
-
-          <a class="btn btn-primary" ng-click="submit()">Login <i class="fa fa-fw fa-unlock-alt"></i></a>
-          <a href="#" class="forgot-password">Forgot password?</a>
+          <button type="submit" class="btn btn-primary">Login</button>
+          <br/><br/>
           <a ui-sref="sign-up" class="link-text-color">Create account</a>
         </div>
+        </form>
       </div>
     </div>
 
@@ -32,6 +36,6 @@
 
 <!-- Footer -->
 <footer class="footer">
-  <strong>Learning</strong> v1.1.0 &copy; Copyright 2015
+  <strong>Learning</strong>Copyright 2017
 </footer>
 <!-- // Footer -->
