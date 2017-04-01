@@ -153,7 +153,8 @@
           </li>
           <!-- // END user -->
         </ul>
-        <a ui-sref="login" class="navbar-btn btn btn-primary">Log In</a>
+        <div class="navbar-btn" style="float: left;width: 147px;" ng-translate-language-select style="float: left"></div>
+        <a ui-sref="login" class="navbar-btn btn btn-primary">{{"loginbuttonkey" | translate}}</a>
       </div>
     </div>
     <!-- /.navbar-collapse -->
@@ -236,6 +237,14 @@
     };
   </script>
   <script src="js/vendor/all.js"></script>
+<script src="js/translate/angular-cookies/angular-cookies.js"></script>
+  <script src="js/translate/angular-translate/angular-translate.js"></script>
+  <script src="js/translate/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
+  <script src="js/translate/angular-translate-storage-cookie/angular-translate-storage-cookie.js"></script>
+  <script src="js/translate/angular-translate-storage-local/angular-translate-storage-local.js"></script>
+  <script src="js/translate/angular-translate-handler-log/angular-translate-handler-log.js"></script>
+  <script src="js/translate/angular-dynamic-locale/src/tmhDynamicLocale.js"></script>
+
   <script src="js/app/app.js"></script>
   <script src="js/controllers/userfactori.js"></script>
   <script src="js/controllers/authfactory.js"></script>
@@ -245,7 +254,8 @@
   <script src="js/controllers/addcourses.js"></script>
   <script src="js/controllers/coursectrl.js"></script>  
   <script src="js/controllers/admindashboard.js"></script>
-  
+  <script src="js/services/LocaleService.js"></script>
+  <script src="js/directives/LanguageSelectDirective.js"></script>
 
 </body>
 

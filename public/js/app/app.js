@@ -5985,10 +5985,13 @@ require('./_sidebar-toggle');
     angular.module('app', [
         'ngResource',
         'ngSanitize',
+        'ngCookies',
         'ngTouch',
         'ui.router',
         'ui.utils',
-        'ui.jq'
+        'ui.jq',
+        'pascalprecht.translate',
+        'tmh.dynamicLocale'
     ]);
 
     app = angular.module('app')
@@ -6019,13 +6022,36 @@ require('./_sidebar-toggle');
         $httpProvider.interceptors.push('httpRequestInterceptor');
     });    
 
+    app.config(function ($translateProvider) {
+        $translateProvider.useMissingTranslationHandlerLog();
+    })
 
+    app.config(function ($translateProvider) {
+        $translateProvider.useStaticFilesLoader({
+            prefix: 'resources/locale-',// path to translations files
+            suffix: '.json'// suffix, currently- extension of the translations
+        });
+        $translateProvider.preferredLanguage('en_US');// is applied on first load
+        $translateProvider.useLocalStorage();// saves selected language to localStorage
+    })
+
+    app.config(function (tmhDynamicLocaleProvider) {
+    tmhDynamicLocaleProvider.localeLocationPattern('js/translate/angular-i18n/angular-locale_{{locale}}.js');
+})
 
 })();
 },{}],"/Code/html/themes/learning-1.1.0/src/js/themes/angular/angular/config.router.js":[function(require,module,exports){
 (function(){
     'use strict';
     angular.module('app').constant('API_URL', 'http://localhost:3001')
+
+    angular.module('app').constant('LOCALES', {
+    'locales': {
+        'ru_RU': 'Русский',
+        'en_US': 'English'
+    },
+    'preferredLocale': 'en_US'
+    })
 
     angular.module('app')
         .run([ '$rootScope', '$state', '$stateParams',
