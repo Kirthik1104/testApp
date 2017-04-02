@@ -31,8 +31,7 @@ var userModel = new Schema({
         required: true
     },
     active: {
-        type:String,
-        required: true
+        type:String
     },
     proImg: { type: String },
     created : { type : Date, default : Date.now } 
