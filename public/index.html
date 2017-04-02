@@ -184,9 +184,9 @@
 
         <div class="form-group">
           <div class="input-group">
-            <input type="text" class="form-control" placeholder="{{'enterEmailHere...'| translate}}">
+            <input type="text" ng-model="$root.email" class="form-control" placeholder="{{'enterEmailHere...'| translate}}">
             <span class="input-group-btn">
-                <button class="btn btn-grey-800" type="button">{{"SubscribeButtonkey"| translate}}</button>
+                <button ng-click="$root.subscribe()" class="btn btn-grey-800" type="button">{{"SubscribeButtonkey"| translate}}</button>
                 </span>
           </div>
         </div>

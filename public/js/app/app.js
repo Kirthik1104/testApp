@@ -6158,13 +6158,28 @@ require('./_sidebar-toggle');
                     .state('website-pages.home', {
                         url: '/home',
                         templateUrl: 'website/home.html',
-                        controller: ['$scope', '$rootScope', '$state', function($scope, $rootScope, $state){
+                        controller: ['$scope', '$rootScope', '$state','$http', function($scope, $rootScope, $state, $http){
                             $scope.app.settings.htmlClass = htmlClass.website;
                             $scope.app.settings.bodyClass = '';
                             $rootScope.loginPage= false;
                             $scope.submit = function(){
                                 sessionStorage.setItem("keyword", $rootScope.searchCourse);
                                 $state.go('website-pages.grid');
+                            }
+
+                            $rootScope.subscribe =  function(){
+                                var subscribe = {};
+                                subscribe.email = $rootScope.email;
+                                $http({
+                                  url: 'http://localhost:3001/api/subscribe',
+                                  method: 'POST',
+                                  data: subscribe
+                                }).then(function(response) {                                
+                                    alert("subscribe email updated successfully");
+                                    $rootScope.email = "";
+                                }, function(error) {
+                                    console.log(error);
+                                });
                             }
 
                         }]

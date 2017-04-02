@@ -20,6 +20,7 @@ var User = require( './models/userModels' );
 var Course = require( './models/courseModels' );
 var Lesson = require( './models/lessonModels' );
 var subscribeModels = require( './models/subscribeModels' );
+var Subscribe = require( './models/subscribeModels' );
 //var Image = require('./models/ImageModel');
 
 app  = express();
@@ -43,6 +44,7 @@ allcourseRouter = require( './Routes/allcourseRoutes' )( Course );
 alluserRouter = require( './Routes/allusersRoute' )( User );
 lessonRouter = require( './Routes/lessonRoute' )( Lesson );
 //imageRouter = require( './Routes/imageRoute' )( Image );
+subscribeRouter = require('./Routes/subscribeRoutes')(Subscribe);
 
 app.use( '/api/allusers', alluserRouter );
 app.use( '/api/allcourse', allcourseRouter );
@@ -50,6 +52,8 @@ app.use( '/api/authenticat', authenticatRouter);
 app.use( '/api/user', userRouter);
 app.use( '/api/course', courseRouter);
 app.use( '/api/lesson', lessonRouter);
+app.use('/api/subscribe', subscribeRouter);
+
 
 
 //app.use( '/api/image', imageRouter);
