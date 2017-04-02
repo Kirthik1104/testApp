@@ -6087,9 +6087,11 @@ require('./_sidebar-toggle');
                         url: '/sign-up',
                         templateUrl: 'website/sign-up.html',
                         controller: ['$scope','$rootScope', '$http', '$state', function($scope, $rootScope, $http, $state){
-                            $scope.app.settings.htmlClass = htmlClass.websiteLogin;
-                            $scope.app.settings.bodyClass = 'login';
-                            //$rootScope.loginPage = true;
+                            
+  $scope.app.settings.htmlClass = htmlClass.websiteLogin;
+  $scope.app.settings.bodyClass = 'login';
+  $rootScope.loginPage = true;
+
                             $scope.roles = ["Student", "Instructor", "Admin"];                  
 
                               $scope.submit = function() {
