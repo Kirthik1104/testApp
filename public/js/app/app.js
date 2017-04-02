@@ -6093,6 +6093,7 @@ require('./_sidebar-toggle');
                             $scope.roles = ["Student", "Instructor", "Admin"];                  
 
                               $scope.submit = function() {
+                                $scope.user.proImg = "hemant";
                                 if($scope.registration.$valid) { 
                                     $http({
                                       url: 'http://localhost:3001/api/user',
@@ -6251,8 +6252,39 @@ require('./_sidebar-toggle');
                         abstract: true,
                         url: '/app-student',
                         templateUrl: 'website/dashboardstudent.html',
-                        controller: ['$scope', '$rootScope', function($scope, $rootScope){
+                        controller: ['$scope', '$rootScope','$http', function($scope, $rootScope, $http){
                             $rootScope.loginPage = true;
+                            $rootScope.blankPhoto= "/images/people/blank.png";
+                            $(".profileimg").click(function() {
+                                $("input[id='my_file']").trigger('click');
+                            });
+                            function encodeImageFileAsURL(cb) {
+                                return function(){
+                                    var file = this.files[0];
+                                    var reader  = new FileReader();
+                                    reader.onloadend = function () {
+                                        cb(reader.result);
+                                    }
+                                    reader.readAsDataURL(file);
+                                }
+                            }
+
+                            angular.element('#my_file').change(encodeImageFileAsURL(function(base64Img){
+                                    $scope.user = {};                             
+                                    $scope.user.proImg = base64Img;
+                                    $http({
+                                      url: 'http://localhost:3001/api/user',
+                                      method: 'PUT',
+                                      data: $scope.user
+                                    }).then(function(response) {                                
+                                        $('.profileimg').attr("src", base64Img);
+                                    }, function(error) {
+                                        console.log(error);
+                                    });
+                                    
+                            }));
+
+
                         }]
                     })
                     .state('app-student.dashboard', {

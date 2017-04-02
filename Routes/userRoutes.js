@@ -21,7 +21,8 @@ var routes = function( User ) {
         return res.json({ success: false, message: 'Failed to authenticate token.' });    
       } else {
         // if everything is good, save to request for use in other routes
-        req.decoded = decoded;    
+        req.decoded = decoded;  
+        console.log("hi");  
         next();
       }
     });
@@ -54,25 +55,45 @@ var routes = function( User ) {
 
   userRouter.route( '/' )
   .get( userController.get );
-  userRouter.route('/:userId').put( function( req, res ) {
-    if ( req.body._id ) {
-      delete req.user._id;
-    }
+  userRouter.route('/').put( function( req, res ) {
+    console.log(req.decoded.userid);
 
-    for ( var p in req.body ) {
-      req.user[ p ] = req.body[ p ];
-    }
-    
-    req.user.save( function( err ) {
-      if ( err ) {
-        res.status( 500 ).send( err );
+
+      User.findById(req.decoded.userid, function(err, user){
+      if(err){
+        res.status(500).send('no user found');
+      } else if (user) {
+              req.user = user;
+              if ( req.body._id ) {
+                delete req.body._id;
+              }
+
+              for ( var p in req.body ) {
+                req.user[p] = req.body[p];
+              }
+            
+              //req.user.firstName = req.body.firstName;
+
+              req.user.save( function( err ) {
+                if ( err ) {
+                  res.status( 500 ).send( err );
+                }
+                
+                else {
+                  res.status( 200 ).send( req.user );
+                }
+                
+              });
+
+
+
+
+
+      } else {
+        res.status(404).send('no user found');
       }
-      
-      else {
-        res.status( 200 ).send( req.user );
-      }
-      
-    }); 
+    });
+
   })
   .delete( function( req, res ) {
     console.log(JSON.stringify(req));

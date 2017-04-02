@@ -7,7 +7,6 @@ var routes = function( User ) {
   //var userController = require( '../Controllers/userController' )( User );
 
   userRouter.route( '/' ).post(function(req, res) {
-  // find the user
 
   User.find({
     userName: req.body.userName
@@ -41,6 +40,7 @@ var routes = function( User ) {
           token: userid,
           userRole: user[0].admin,
           userName:user[0].userName,
+          userPhoto:user[0].proImg,
           token: token
         });
       } else {

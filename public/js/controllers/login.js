@@ -53,6 +53,11 @@ angular.module('app')
       if($scope.loginform.$valid) 
      {   UserFactory.login($scope.userName, $scope.password).then(function success(response) {
           vm.user = response.data.user;
+          if(response.data.userName)
+          {
+             $rootScope.userData = response.data;
+          }
+
           if(response.data.userRole == "Student") {
              $state.go('app-student.dashboard');
           }
