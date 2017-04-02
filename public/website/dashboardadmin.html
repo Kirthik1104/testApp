@@ -12,7 +12,7 @@
           <span class="icon-bar"></span>
         </button>
         <div class="navbar-brand navbar-brand-primary navbar-brand-logo navbar-nav-padding-left">
-          <a class="svg" ui-sref="app-student.dashboard">
+          <a class="svg">
             <svg viewBox="0 0 106 64" height="100%" width="100%" preserveAspectRatio="xMidYMid meet">
               <path d="M4.731,36.187h8.234v3.414H0.279V20.481h4.452V36.187z" />
               <path d="M21.094,39.878c-2.093,0-3.763-0.658-5.01-1.971c-1.248-1.313-1.872-2.959-1.872-4.938v-0.498
@@ -93,10 +93,9 @@
 
       <div class="sidebar-block">
         <div class="profile">
-          <a href="#">
-            <img src="images/people/110/guy-6.jpg" alt="people" class="img-circle width-80" />
-          </a>
-          <h4 class="text-display-1 margin-none">{{$root.userName}}</h4>
+          <input type="file" id="my_file" style="display: none;" />
+            <img ng-src="{{userData.userPhoto  || blankPhoto}}" alt="people" class="img-circle width-80 profileimg" />          
+          <h4 class="text-display-1 margin-none">{{userData.userName}}</h4>
         </div>
       </div>
 
@@ -112,7 +111,7 @@
 
   <!-- Footer -->
   <footer class="footer">
-    <strong>Learning</strong> v1.1.0 &copy; Copyright 2015
+    <strong>Learning</strong> Copyright 2017
   </footer>
   <!-- // Footer -->
 

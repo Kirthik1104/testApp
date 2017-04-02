@@ -138,8 +138,8 @@
           <!-- // END notifications -->
           <!-- User -->
           <li class="dropdown">
-            <a href="" class="dropdown-toggle user" data-toggle="dropdown">
-              <img ng-src="{{userData.userPhoto}}" alt="Bill" class="img-circle" width="40" />{{userData.userName}}<span class="caret"></span>
+             <a href="" class="dropdown-toggle user" data-toggle="dropdown">
+              <img ng-src="{{userData.userPhoto || blankPhoto}}" class="img-circle profileimg" width="40" />{{userData.userName}}<span class="caret"></span>
             </a>
             <ul class="dropdown-menu" role="menu">
               <li ui-sref-active="active"><a ui-sref="app-student.private-profile">Account</a></li>
@@ -211,7 +211,7 @@
       <div class="sidebar-block">
         <div class="profile">
           <input type="file" id="my_file" style="display: none;" />
-            <img ng-src="{{userData.userPhoto}}" alt="people" class="img-circle width-80 profileimg" />          
+            <img ng-src="{{userData.userPhoto  || blankPhoto}}" alt="people" class="img-circle width-80 profileimg" />          
           <h4 class="text-display-1 margin-none">{{userData.userName}}</h4>
         </div>
       </div>
@@ -248,7 +248,7 @@
 
   <!-- Footer -->
   <footer class="footer">
-    <strong>Learning</strong> v1.1.0 &copy; Copyright 2015
+    <strong>Learning</strong> Copyright 2017
   </footer>
   <!-- // Footer -->
 

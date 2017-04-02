@@ -18,15 +18,39 @@
                 <div class="panel-heading">
                   <h4 class="text-headline margin-none">All Users</h4>
                 </div>
-                <ul class="list-group">
-                  <li class="list-group-item media v-middle" ng-repeat="user in Users">
-                    <div class="media-body">
-                      <a ui-sref="app-instructor.edit-course" class="text-subhead list-group-link">{{user.userName}}</a>                  
-                    </div>
-                    
-                  </li>
+
+                 <div class="table-responsive">
+            <table class="table v-middle">
+              <thead>
+                <tr>
+                  <th>Create Date</th>
+                  <th>Name</th>
+                  <th>Role</th>
+                  <th>Email</th>
+                  <th>Location</th>
+                  <th class="text-right">Act/Deactive</th>
+                </tr>
+              </thead>
+              <tbody id="responsive-table-body">
+                <tr ng-repeat="user in Users">
                   
-                </ul>
+                  <td><span class="label label-default">{{user.created  | date:"dd/MM/yyyy"}}</span></td>
+                  <td>
+                    <img ng-src="{{user.proImg || blankPhoto}}" width="40" class="img-circle"> {{user.userName}}
+                  </td>
+                  <td><span class="label label-default">{{user.admin}}</span></td>
+                  <td>{{user.email}}</td>
+                  <td>{{user.address}}</td>
+                  
+                  <td class="text-right">
+                    <a href="" class="btn btn-default btn-xs hide" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil"></i></a>
+                    <a href="" class="btn btn-danger btn-xs" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-times"></i></a>
+                  </td>
+                </tr>
+                
+              </tbody>
+            </table>
+          </div>
               
               </div>
             </div>
