@@ -104,7 +104,7 @@ function sendConnectedList(socket) {
 	allClients.forEach(function (socket) {
 		list.push(socket.nickname)
 	})
-	list.push('talktome')
+	
 	socket.emit('list', list)
 }
 
@@ -304,7 +304,7 @@ io.sockets.on('connection', function (socket, nickname) {
 		}
 		if (alreadyUsed(nickname)) {
 			nickname=nickname+'-'+allClients.length
-		}
+		}	
 		if (old_nickname!=nickname) {
 			socket.emit('set_nickname', nickname)
 		}
@@ -334,7 +334,7 @@ io.sockets.on('connection', function (socket, nickname) {
 				res = command+': '+res
 				socket.emit('message', {nickname: 'server', message: res, time: moment().tz("Europe/Paris").format('HH:mm')})
 			}
-		} else if (to=='talktome') {
+		} else if (to=='admin') {
 			ttm.answer(socket,message)
 		} else if (to=='all'||!findSocket(to)) {
 			socket.broadcast.emit('message', {nickname: socket.nickname, message: message, time: moment().tz("Europe/Paris").format('HH:mm')})

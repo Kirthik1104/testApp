@@ -320,19 +320,6 @@ function answer(socket,message) {
 
 	if (tutorialPhase[nickname]) {
 		followTutorial(socket,message)
-	} else if (knownNicknames.indexOf(nickname)==-1) {
-		if (message.toLowerCase().indexOf('yes')!=-1) {
-			launchTutorial(socket)
-		} else if (message.toLowerCase().indexOf('no')!=-1) {
-			say(socket,'Great.')
-			say(socket,'Talk to me anytime!')
-		} else {
-			say(socket, 'I am learning to talk.')
-			say(socket, 'The more you talk to me, the better I will be.')
-		}
-		knownNicknames.push(nickname)
-	} else if (message.toLowerCase().indexOf('help')!=-1||message.toLowerCase().indexOf('question')!=-1||(message.toLowerCase().indexOf('how')!=-1&&message.toLowerCase().indexOf('to')!=-1)) {
-		launchTutorial(socket)
 	} else {
 		genAnswer(socket,message)
 	}

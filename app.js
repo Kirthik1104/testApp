@@ -68,8 +68,8 @@ var mailgun = require('mailgun-js')({apiKey: api_key, domain: domain});
 var data = {
   from: 'akshay<postmaster@sandbox0f7199227c3c441b8064292ffa8cd1ab.mailgun.org>',
   to: 'akshaymhatre89@yahoo.in',
-  subject: 'req.body.email',
-  text: 'req.body.message'
+  subject: req.body.email,
+  text: req.body.message
 };
 
 mailgun.messages().send(data, function (error, body) {

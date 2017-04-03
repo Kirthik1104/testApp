@@ -96,12 +96,15 @@ var routes = function( User ) {
 
   })
   .delete( function( req, res ) {
-    console.log(JSON.stringify(req));
-    req.user.remove( function( err ) {
-      if ( err ) {
-        res.status( 500 ).send( err );
+    var ObjectId = require('mongodb').ObjectID;
+    console.log(req.body.id)
+     User.remove({_id : ObjectId(req.body.id)}, function(err, user){
+      if(err){
+        res.status(500).send('no user found');
+      } else if (user) {
+        res.status( 200 )
       } else {
-        res.status( 204 ).send( {status :'Removed'} );
+        res.status(404).send('no user found');
       }
     });
   });

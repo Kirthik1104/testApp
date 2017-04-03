@@ -150,7 +150,7 @@
               <ul class="dropdown-menu" role="menu">
                 <li ui-sref-active="active"><a ui-sref="website-student.dashboard"><i class="fa fa-bar-chart-o"></i> Dashboard</a></li>
                 <li ui-sref-active="active"><a ui-sref="website-student.courses"><i class="fa fa-mortar-board"></i> My Courses</a></li>
-                <li ui-sref-active="active"><a ui-sref="website-student.private-profile"><i class="fa fa-user"></i> Profile</a></li>
+                <li ui-sref-active="active"><a ui-sref="website-student.private-profile"><i class="fa fa-user"></i> Contact</a></li>
                 <li><a ui-sref="login"><i class="fa fa-sign-out"></i> Logout</a></li>
               </ul>
             </li>
@@ -176,10 +176,8 @@
           <h4 class="text-headline text-light">{{"exploreButtonkey" | translate}}</h4>
           <ul class="list-unstyled">
             <li><a href="">{{"coursesButtonkey"|translate}}</a></li>
-            <li><a href="">{{"tutorsButtonkey"|translate}}</a></li>
-            <li><a href="">{{"PricingButtonkey"|translate}}</a></li>
-            <li><a href="">{{"BecomeTutorButtonkey"|translate}}</a></li>
-            <li><a href="">{{"SignUpButtonkey"|translate}}</a></li>
+           
+            <li><a ui-sref="website-pages.contact">contact us</a></li>
           </ul>
         </div>
         <div class="col-xs-12 col-md-6">
