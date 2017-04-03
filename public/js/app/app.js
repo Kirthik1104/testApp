@@ -6095,7 +6095,7 @@ require('./_sidebar-toggle');
                             $scope.roles = ["Student", "Instructor", "Admin"];                  
 
                               $scope.submit = function() {
-                                $scope.user.proImg = "hemant";
+                                $scope.user.proImg = "";
                                 if($scope.registration.$valid) { 
                                     $http({
                                       url: 'http://localhost:3001/api/user',
