@@ -126,16 +126,16 @@ function genHh() {
 
 function greet(socket) {
 	say(socket,'Hi '+socket.nickname+'!')
-	say(socket,'I am talktome.')
+	say(socket,'I am admin.')
 	say(socket,'Do you need any help?')
 }
 
 function sendImage(socket,image) {
-	socket.emit('image', {nickname: 'talktome', image: image, time: moment().tz("Europe/Paris").format('HH:mm')})
+	socket.emit('image', {nickname: 'Admin', image: image, time: moment().tz("Europe/Paris").format('HH:mm')})
 }
 
 function say(socket,message) {
-	socket.emit('message', {nickname: 'talktome', message: message, time: moment().tz("Europe/Paris").format('HH:mm')})
+	socket.emit('message', {nickname: 'Admin', message: message, time: moment().tz("Europe/Paris").format('HH:mm')})
 }
 
 function sayAll(socket,message) {
@@ -383,7 +383,7 @@ function receive(event,data) {
 					say(socket,'Great.')
 					say(socket,'Talk to me anytime!')
 				} else {
-					say(socket,'To talk to me, select my name in the "Connected users" list.')
+					say(socket,'How can i assist You?')
 					infoNicknames.push(nickname)
 				}
 			} else {

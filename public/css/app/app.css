@@ -48569,3 +48569,26 @@ fieldset[disabled] .owl-preview .owl-controls .owl-nav > div {
   width: 50px !important;
 }
 .errormsg { color:red; }
+
+
+
+#chatwindow {
+    max-width: 400px;
+    position: absolute;
+    z-index: 999;
+    background: #f0ad4e;
+    bottom: 45px;
+    text-align: left;
+    right: 0px;
+    padding: 15px;
+    color: black;
+}
+
+#chat_zone {
+  overflow-y: auto;
+  max-height: 300px;
+}
+
+.hideonhome{
+  display: none;
+}

@@ -23,7 +23,7 @@ var cmd = []
 cmd.push('')
 var lc = 0
 
-if (!nickname) {
+if (!nickname && !homePage) {
 	window.location = '/chatlogin'
 } else if (sessionStorage.password) {
 	password = sessionStorage.password
@@ -51,7 +51,7 @@ var logoutsound = new Audio('./audio/signout.mp3')
 socket.on('set_nickname', function(new_nickname){
 	nickname = new_nickname
 	setNickname()
-	messageFromServer('your nickname has been changed to <b>' + nickname + '</b> by server.')
+	messageFromServer('<span class="hideonhome">your nickname has been changed to </span><b>' + nickname + '</b> <span class="hideonhome">by server.</span>')
 	sessionStorage.nickname = nickname
 	sessionStorage.password = ''
 })
@@ -255,7 +255,7 @@ function escapeHtml(unsafe) {
 // add a message in the page
 function insertMessage(nickname, message, time, toself, secured, to) {
 	var cl = 'from_server'
-	var secimg = '/img/blanksecure.jpg'
+	var secimg = '/chat/img/blanksecure.jpg'
 	var totag = ''
 	var needEscape = false
 	if (toself) {
@@ -274,12 +274,12 @@ function insertMessage(nickname, message, time, toself, secured, to) {
 	if (needEscape) {
 		message = escapeHtml(message)
 	}
-	$('#chat_zone').prepend('<p class="'+cl+'">'+time+' <img src="'+secimg+'" class="keyarea"> <strong>' + nickname + '</strong> ' + message + totag +'</p>').linkify()
+	$('#chat_zone').append('<p class="'+cl+'">'+time+' <img src="'+secimg+'" class="keyarea"> <strong>' + nickname + '</strong> ' + message + totag +'</p>').linkify()
 }
 
 function insertImage(nickname, image, time, toself) {
 	var cl = 'from_server'
-	var secimg = '/img/blanksecure.jpg'
+	var secimg = '/chat/img/blanksecure.jpg'
 	var totag = ''
 	var needEscape = false
 	if (toself) {
@@ -484,3 +484,7 @@ if (!String.prototype.startsWith) {
 function help() {
 	socket.emit('help')
 }
+
+$( "#chatButton" ).click(function() {
+  $("#chatwindow").toggleClass("hide");
+});
