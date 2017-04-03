@@ -17,6 +17,17 @@ app.factory('UserFactory', function UserFactory($http, API_URL, AuthTokenFactory
       });
     }
 
+
+    function deleteuser(id) {
+      return $http.post(API_URL + '/api/authenticat', {
+        userName: username,
+        password: password
+      }).then(function success(response) {
+        AuthTokenFactory.setToken(response.data.token);
+        return response;
+      });
+    }
+
     function logout() {
       AuthTokenFactory.setToken();
     }
