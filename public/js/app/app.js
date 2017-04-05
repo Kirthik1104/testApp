@@ -6471,6 +6471,27 @@ require('./_sidebar-toggle');
             };
         } ]);
 
+    /*angular.module('app').directive('plyr', function ($comile) {
+        return {
+            /*template: '<div data-type="youtube" data-video-id="{{videoid}}"></div>',
+            link: function(scope, element, attrs) {
+                scope.videoid = "bTqVqk7FSmY";
+                var player = plyr.setup(element, { debug: true });
+            }
+
+            link: function(scope, element, attrs) {
+                scope.videoid = "bTqVqk7FSmY";
+                var htmltemlate= "<div data-type='youtube' data-video-id='{{videoid}}'></div>";
+                var template = angular.element("#plyr");
+                element.append(htmltemlate);
+                $compile(template)(scope);
+                var player = plyr.setup(element, { debug: true });
+            }
+
+        };
+    });
+*/
+
 })();
 },{}],"/Code/html/themes/learning-1.1.0/src/js/themes/angular/angular/directives/curriculum.js":[function(require,module,exports){
 (function () {

@@ -29,6 +29,11 @@
         </div>
 
         <h5 class="text-subhead-2 text-light">Curriculum</h5>
+
+        <div id="plyr" data-type="youtube" data-video-id="">
+            
+        </div>
+
         <div class="panel panel-default curriculum open paper-shadow" ng-repeat="lesson in lessons" data-z="0.5">
           <div class="panel-heading panel-heading-gray" data-toggle="collapse" data-target="#curriculum-1">
             <div class="media">
@@ -36,7 +41,8 @@
                 <span class="icon-block img-circle bg-indigo-300 half text-white"><i class="fa fa-graduation-cap"></i></span>
               </div>
               <div class="media-body">
-                <h4 class="text-headline">{{lesson.title}}</h4>
+              {{videoid}}
+                <h4 class="text-headline" ng-click="playvideo(lesson.coursepath)">{{lesson.title}}</h4>
                 <p>duration:{{lesson.duration}} | created:{{lesson.created | date:'dd/MM/yyyy'}}</p>
               </div>
             </div>

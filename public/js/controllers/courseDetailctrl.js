@@ -49,4 +49,14 @@ function handleError() {
 $scope.searchCourseLesson();
 $scope.searchCoursebyID();
 
+$scope.playvideo = function(videoid){
+  plyr.get().forEach(function(instance) { 
+    instance.destroy();
+  });
+  angular.element("#plyr").attr("data-video-id", videoid);
+  plyr.setup()[0];
+  //plar.destroyed()
+}
+
+
 });
