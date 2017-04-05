@@ -14,7 +14,8 @@ angular.module('app')
   
   $scope.app.settings.htmlClass = htmlClass.website;
   $scope.app.settings.bodyClass = '';
-  $rootScope.loginPage = false;
+  $rootScope.loginPage = true;
+  $scope.hideloginbtn="true";
 
 
 /*  function handleError(err) {

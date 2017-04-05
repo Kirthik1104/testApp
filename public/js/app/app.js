@@ -6098,7 +6098,7 @@ require('./_sidebar-toggle');
                                       method: 'POST',
                                       data: $scope.user
                                     }).then(function(response) {                                
-                                        $state.go('login');
+                                        $state.go('website-pages.login');
                                     }, function(error) {
                                         alert(error.message);
                                     });
