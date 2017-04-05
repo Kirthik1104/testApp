@@ -21,11 +21,23 @@ var subscribeController = function( Subscribe ) {
   };
 
   var get = function(req, res) {
+    Subscribe.find({}, function(err, subscribe) {
+      if(!err) {
+        res.status( 200 );
+        res.send( {"success": "false", "subscribe": subscribe});
+      }
+      else
+      {
+        res.status( 300 );
+        res.send( {"success": "false"} );
+      }      
+    });
     
   };
 
   return {
-    post : post
+    post : post,
+    get : get
   };
 }
 
