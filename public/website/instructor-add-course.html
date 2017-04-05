@@ -21,7 +21,7 @@
               <!-- Tabs -->
               <ul class="nav nav-tabs" ng-init="panel='course'">
                 <li ng-click="panel='course'" ng-class="panel=='course'?'active':''"><a><i class="fa fa-fw fa-lock"></i> <span class="hidden-sm hidden-xs">Course</span></a></li> 
-                <li ng-click="panel='lesson'" ng-class="panel=='lesson'?'active':''"><a><i class="fa fa-fw fa-credit-card"></i> <span class="hidden-sm hidden-xs">Lessons</span></a></li>
+                <li ng-click="panel='lesson'; addlessonTab();" ng-class="panel=='lesson'?'active':''"><a><i class="fa fa-fw fa-credit-card"></i> <span class="hidden-sm hidden-xs">Lessons</span></a></li>
               </ul>
               <!-- // END Tabs -->
 
@@ -85,7 +85,7 @@
                             <div class="col-md-10">
                               <div class="form-group form-control-material">
                                 <input type="text" ng-model="lesson.title" class="form-control" id="exampleInputFirstName" placeholder="Lesson Title">
-                                <label for="exampleInputFirstName">First name</label>
+                                <label for="exampleInputFirstName">Course Title</label>
                               </div>
                             </div>
                           </div>
@@ -104,23 +104,20 @@
                     </div>
 
                     <ul class="nestable-list">
-                      <li class="nestable-item nestable-item-handle" data-id="2">
+                      <li class="nestable-item nestable-item-handle" data-id="2" ng-repeat="lesson in lessons">
                         <div class="nestable-handle"><i class="md md-menu"></i></div>
                         <div class="nestable-content">
                           <div class="media v-middle">
                             <div class="media-left">
                               <div class="icon-block half bg-purple-400 text-white">
-                                <i class="fa fa-jsfiddle"></i>
+                                <i class="fa"></i>
                               </div>
                             </div>
                             <div class="media-body">
                               <h4 class="text-title media-heading margin-none">
-                                <a href="" class="link-text-color">Browserify: Writing Modular JavaScript</a>
+                                <a href="" class="link-text-color">{{lesson.title}}</a>
                               </h4>
-                              <div class="text-caption">updated 1 month ago</div>
-                            </div>
-                            <div class="media-right">
-                              <a href="" class="btn btn-white btn-flat"><i class="fa fa-pencil fa-fw"></i> Edit</a>
+                              <div class="text-caption">{{lesson.created | date:'dd/mm/yyyy'}} duration : {{lesson.duration}}</div>
                             </div>
                           </div>
                         </div>

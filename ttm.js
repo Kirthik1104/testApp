@@ -364,9 +364,9 @@ function receive(event,data) {
 			var nickname = socket.nickname
 			var message = data.message
 			if (knownNicknames.indexOf(nickname)==-1&&infoNicknames.indexOf(nickname)==-1) {
-				if (message.toLowerCase().indexOf('yes')!=-1) {
+				if (message.toLowerCase().indexOf('frustrate')!=-1) {
 					launchTutorial(socket)
-				} else if (message.toLowerCase().indexOf('no')!=-1) {
+				} else if (message.toLowerCase().indexOf('yes happy')!=-1) {
 					say(socket,'Great.')
 					say(socket,'Talk to me anytime!')
 				} else {

@@ -27,7 +27,7 @@ app.factory('courseFactory', function courseFactory($http, API_URL, $q) {
     function getallCourse(value) {
       
       var config = {
-              keyword: value        
+              keyword: value || ""       
       }
       return $http.post(API_URL + '/api/allcourse', config).then(function success(response) {
         return response;

@@ -22,23 +22,42 @@ $scope.course = {};
 $scope.submit = function() {
   $scope.course.description =  angular.element(".note-editable").html();
   courseFactory.createNewCourse($scope.course).then(function success(response) {
-    sessionStorage.setItem("courseid", response.data._id);
+    alert("course updated sucessfully. Now create Lesson");
+    localStorage.setItem("courseid", response.data._id);
 
   }, handleError);
 }
 
 $scope.addLesson = function() {
-      $scope.lesson.courseid = sessionStorage.getItem("courseid")
+      $scope.lesson.courseid = localStorage.getItem("courseid")
       $http({
         url: 'http://localhost:3001/api/lesson',
         method: 'POST',
         data: $scope.lesson
       }).then(function(response) {                                
          alert("updated sucessfully");
+         $scope.addlessonTab();
       }, function(error) {
         alert(error.message);
       });
   
+}
+
+$scope.addlessonTab = function() {
+      $scope.courseid = localStorage.getItem("courseid")
+      $http({
+        url: 'http://localhost:3001/api/lesson',
+        method: 'GET',
+        params: {courseid: $scope.courseid}
+      }).then(function(response) {                                
+         $scope.lessons = response.data.lessons.filtarray;
+      }, function(error) {
+        alert(error.message);
+      });  
+}
+
+$scope.courseDetail = function() {
+  alert("hi");
 }
 
 function handleError() {

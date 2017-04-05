@@ -17,12 +17,19 @@ angular.module('app')
         $scope.app.settings.bodyClass = '';
         $rootScope.loginPage= false;
                             
-        var keyword = $rootScope.searchCourse || sessionStorage.getItem("keyword");
+        var keyword = $rootScope.searchCourse || localStorage.getItem("keyword");
     	courseFactory.getallCourse(keyword).then(function success(response) {
         $scope.courses = response.data.course;
         //$rootScope.userName = response.data.userName
       }, handleError);
-    }
+    };
+
+    localStorage.removeItem("courseid");
+
+    $scope.goToSearchDetailPage = function(courseid) {
+        localStorage.setItem("courseid", courseid);
+        $state.go('website-pages.take-course');
+    };
 
     $scope.getallcourses();
     function handleError() {

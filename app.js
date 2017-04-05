@@ -3,6 +3,7 @@ var mongoose = require( 'mongoose' );
 var bodyParser = require( 'body-parser' );
 var path = require('path');
 var config = require('./config');
+
 var server_ip_address = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1'
 
 var db;
@@ -45,16 +46,21 @@ alluserRouter = require( './Routes/allusersRoute' )( User );
 lessonRouter = require( './Routes/lessonRoute' )( Lesson );
 //imageRouter = require( './Routes/imageRoute' )( Image );
 subscribeRouter = require('./Routes/subscribeRoutes')(Subscribe);
+singlecourseRouter = require('./Routes/singlecourseRouter')(Course);
 
 app.use( '/api/allusers', alluserRouter );
 app.use( '/api/allcourse', allcourseRouter );
 app.use( '/api/authenticat', authenticatRouter);
 app.use( '/api/user', userRouter);
 app.use( '/api/course', courseRouter);
+app.use('/api/getsinglecourse', singlecourseRouter)
 app.use( '/api/lesson', lessonRouter);
 app.use('/api/subscribe', subscribeRouter);
 
 
+var routes = require('./routes/imagefile');
+app.use('/testImage', routes);
+app.use(express.static('public'));
 
 //app.use( '/api/image', imageRouter);
 

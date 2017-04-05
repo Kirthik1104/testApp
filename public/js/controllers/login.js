@@ -12,9 +12,9 @@ angular.module('app')
     appl1r3: 'st-layout ls-top-navbar-large ls-bottom-footer show-sidebar sidebar-l1 sidebar-r3'
   };
   
-  $scope.app.settings.htmlClass = htmlClass.websiteLogin;
-  $scope.app.settings.bodyClass = 'login';
-  $rootScope.loginPage = true;
+  $scope.app.settings.htmlClass = htmlClass.website;
+  $scope.app.settings.bodyClass = '';
+  $rootScope.loginPage = false;
 
 
 /*  function handleError(err) {
@@ -67,6 +67,7 @@ angular.module('app')
           else if(response.data.userRole == "Admin")
           {
              $state.go('app-admin.dashboard');
+             
           }
           else if(!response.data.success)
           {

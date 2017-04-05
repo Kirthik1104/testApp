@@ -6,6 +6,7 @@
   "views.Fork me on": "Fork me on",
   "loginbuttonkey" : "login",
   "searchbuttonkey" : "Search",
+  "getAllCourse":"All Courses",
   "searchPlaceholderkey": "Search Courses",
   "featureButtonKey": "Features",
   "watchCoursesOfflineButtonkey" : "Watch Courses Offline",

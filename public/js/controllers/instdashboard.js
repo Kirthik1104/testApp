@@ -11,7 +11,7 @@ angular.module('app')
     appl3: 'st-layout ls-top-navbar-large ls-bottom-footer show-sidebar sidebar-l3',
     appl1r3: 'st-layout ls-top-navbar-large ls-bottom-footer show-sidebar sidebar-l1 sidebar-r3'
   };
-  
+    
     $scope.app.settings.htmlClass = htmlClass.appl3;
     $scope.app.settings.bodyClass = '';
     $rootScope.menuStudent = false;
@@ -22,6 +22,12 @@ angular.module('app')
         $scope.courses = response.data.course;
         $rootScope.userName = response.data.userName
       }, handleError);
+    }
+
+    $scope.courseDetailPage = function(course) {
+        
+        localStorage.setItem("courseid", course._id);
+        $state.go('app-instructor.addCourse');
     }
 
     $scope.getcourses();

@@ -10,7 +10,7 @@ var routes = function( Lesson ) {
 
 
   lessonRouter.route( '/' )
-  .get( lessonController.get );
+  .get( lessonController.getbycourseID );
 
 
   return lessonRouter;

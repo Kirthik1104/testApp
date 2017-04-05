@@ -18,9 +18,26 @@ var lessonController = function( Lesson ) {
 
 
   var getbycourseID = function(req, res) {
-    res.status( 201 );
-    res.send({"success": true} );
-  };
+    var obj = {};
+    obj.filtarray = [];
+    Lesson.find({}, function(err, lesson) {  
+      //console.log(lesson);
+
+       for(var i = 0; i < lesson.length; i++){
+        var abc = lesson[i].courseid;
+        if(JSON.stringify(req.query.courseid) == JSON.stringify(abc)) {
+          //console.log("hi");
+          obj.filtarray.push(lesson[i]);
+        }
+      }
+
+      return res.status(200).send({ 
+        success: true,
+        lessons: obj
+      });
+    });
+   }
+
 
 
   var get = function(req, res) {

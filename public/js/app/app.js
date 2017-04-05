@@ -6078,11 +6078,7 @@ require('./_sidebar-toggle');
                     .otherwise('/website-pages/home');
 
                 $stateProvider
-                    .state('login', {
-                        url: '/login',
-                        templateUrl: 'website/login.html',
-                        controller: 'LoginCtrl1'
-                    })
+                    
                     .state('sign-up', {
                         url: '/sign-up',
                         templateUrl: 'website/sign-up.html',
@@ -6165,7 +6161,12 @@ require('./_sidebar-toggle');
                             $scope.app.settings.bodyClass = '';
                             $rootScope.loginPage= false;
                             $scope.submit = function(){
-                                sessionStorage.setItem("keyword", $rootScope.searchCourse);
+                                localStorage.setItem("keyword", $rootScope.searchCourse);
+                                $state.go('website-pages.grid');
+                            }
+
+                            $scope.submit1 = function(){
+                                localStorage.removeItem("keyword");
                                 $state.go('website-pages.grid');
                             }
 
@@ -6186,7 +6187,11 @@ require('./_sidebar-toggle');
 
                         }]
                     })
-
+                    .state('website-pages.login', {
+                        url: '/login',
+                        templateUrl: 'website/login.html',
+                        controller: 'LoginCtrl1'
+                    })
                     .state('website-pages.grid', {
                         url: '/grid',
                         templateUrl: 'website/courses-grid.html',
@@ -6195,6 +6200,12 @@ require('./_sidebar-toggle');
                             $scope.app.settings.bodyClass = '';
                         }]*/
                         controller: 'coursectrl'
+                    })
+
+                    .state('website-pages.take-course', {
+                        url: '/take-course',
+                        templateUrl: 'website/student-take-course.html',
+                        controller: 'courseDetailctrl'
                     })
 
 

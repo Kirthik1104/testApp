@@ -27,15 +27,15 @@ body.login .lock-container {
     right: 0;
   }
 }
-body.login .lock-container .panel {
+.login .lock-container .panel {
   max-width: 300px !important;
   background: #fff;
   position: relative;
 }
-body.login .lock-container .panel img {
+.login .lock-container .panel img {
   margin: 20px 0 10px;
 }
-body.login .lock-container .panel .forgot-password {
+.login .lock-container .panel .forgot-password {
   margin: 10px 0 0;
   font-weight: 500;
   color: #42a5f5;

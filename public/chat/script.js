@@ -64,7 +64,6 @@ function displayMessage(data) {
 	} else {
 		insertMessage(data.nickname, data.message, data.time, false, data.secured)
 	}
-	nmsound.play()
 }
 
 socket.on('message', function(data) {
@@ -81,21 +80,25 @@ socket.on('image', function(data) {
 
 // display info when a new client joins
 socket.on('new_client', function(nickname) {
+	
 	document.title = nickname + ': joined in.'
 	messageFromServer(nickname + ' joined in.')
 	addToList(nickname)
 	loginsound.play()
+	
 })
 
 // display info when a client lefts
 socket.on('client_left', function(nickname) {
-	document.title = nickname + ': left the chat.'
-	messageFromServer(nickname + ' left the chat.')
-	removeFromList(nickname)
-	logoutsound.play()
-	if (nickname==dest.name) {
-		selectConnected('all')
-	}
+	
+		document.title = nickname + ': left the chat.'
+		messageFromServer(nickname + ' left the chat.')
+		removeFromList(nickname)
+		logoutsound.play()
+		if (nickname==dest.name) {
+			selectConnected('all')
+		}
+	
 })
 
 // list of connected clients

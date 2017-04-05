@@ -17,8 +17,9 @@ var courseController = require( '../Controllers/courseController' )( Course );
 
 });
 */
-courseRouter.route('/getAll').post(courseController.getAll)
 
+courseRouter.route( '/' ).get( courseController.get );
+courseRouter.route('/getAll').post(courseController.getAll)
 courseRouter.use( '/:courseId', function( req, res, next ) {
       //var ObjectId = require('mongodb').ObjectID(req.params.courseId);
       Course.findOne({_id:req.params.courseId}, function( err, course ) {
@@ -84,7 +85,7 @@ courseRouter.use(function(req, res, next) {
   }
 });
 
-courseRouter.route( '/' ).get( courseController.get );
+
 
 
 courseRouter.route( '/' )
