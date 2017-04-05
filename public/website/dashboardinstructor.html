@@ -198,7 +198,7 @@
           </ul>
         </li>
         <li ui-sref-active="active"><a ui-sref="app-student.messages"><i class="fa fa-comments"></i><span>Messages</span></a></li>
-        <li><a ui-sref="login"><i class="fa fa-sign-out"></i><span>Logout</span></a></li>
+        <li><a ui-sref="website-pages.login"><i class="fa fa-sign-out"></i><span>Logout</span></a></li>
       </ul>
     </div>
   </div>
@@ -229,16 +229,9 @@
             <li ui-sref-active="active"><a ui-sref="app-student.take-quiz"><span>Take Quiz</span></a></li>
           </ul>
         </li>
+
       
-        <li class="hasSubmenu" ng-class="{ 'active open': $state.is('app-student.private-profile') || $state.is('app-student.billing') }">
-          <a href="#account-menu"><i class="fa fa-user"></i><span>Account</span></a>
-          <ul id="account-menu" ng-class="{ 'in': $state.is('app-student.private-profile') || $state.is('app-student.billing') }">
-            <li ui-sref-active="active"><a ui-sref="app-student.private-profile"><span>Edit Profile</span></a></li>
-            <li ui-sref-active="active"><a ui-sref="app-student.billing"><span>Edit Billing</span></a></li>
-          </ul>
-        </li>
-      
-        <li><a ui-sref="login"><i class="fa fa-sign-out"></i><span>Logout</span></a></li>
+        <li><a ui-sref="website-pages.login"><i class="fa fa-sign-out"></i><span>Logout</span></a></li>
       </ul>
     </div>
   </div>
