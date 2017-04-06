@@ -58,7 +58,7 @@ app.use( '/api/lesson', lessonRouter);
 app.use('/api/subscribe', subscribeRouter);
 
 
-var routes = require('./routes/imagefile');
+var routes = require('./Routes/imagefile');
 app.use('/testImage', routes);
 app.use(express.static('public'));
 
