@@ -96,7 +96,9 @@ app.get( '/', function( req, res ) {
   console.log( 'Running at port:', port );
 });
 */
-server.listen(3001,server_ip_address,function () {
+
+app.set(app.get('port'), (process.env.PORT || 5000));
+server.listen(app.get('port'),server_ip_address,function () {
   console.log("Listening on " + server_ip_address + ", port " + 3001)
 })
 
