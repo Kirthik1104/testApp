@@ -98,8 +98,8 @@ app.get( '/', function( req, res ) {
 */
 
 //process.env.PORT || 5000
-server.listen(65531,server_ip_address,function () {
-  console.log("Listening on " + server_ip_address + ", port " + 3001)
+server.listen(process.env.PORT || 5000,server_ip_address,function () {
+  console.log("Listening on " + server_ip_address + ", port " + process.env.PORT || 5000)
 })
 
 
