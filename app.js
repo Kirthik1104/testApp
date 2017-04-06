@@ -97,8 +97,8 @@ app.get( '/', function( req, res ) {
 });
 */
 
-app.set(app.get('port'), (process.env.PORT || 5000));
-server.listen(app.get('port'),server_ip_address,function () {
+//process.env.PORT || 5000
+server.listen(65531,server_ip_address,function () {
   console.log("Listening on " + server_ip_address + ", port " + 3001)
 })
 
