@@ -24,7 +24,8 @@ var subscribeController = function( Subscribe ) {
     Subscribe.find({}, function(err, subscribe) {
       if(!err) {
         res.status( 200 );
-        res.send( {"success": "false", "subscribe": subscribe});
+        var abc = {"success": "false", "subscribe": subscribe};
+        res.send( abc);
       }
       else
       {

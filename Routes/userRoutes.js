@@ -93,12 +93,12 @@ var routes = function( User ) {
         res.status(404).send('no user found');
       }
     });
-
   })
   .delete( function( req, res ) {
-    var ObjectId = require('mongodb').ObjectID;
-    console.log(req.body.id)
-     User.remove({_id : ObjectId(req.body.id)}, function(err, user){
+    //var ObjectId = require('mongodb').ObjectID;
+    //console.log(req.body.id)
+     User.findOne({_id : "58e148fcfb28041c8c211393"}, function(err, user){
+      console.log(user);
       if(err){
         res.status(500).send('no user found');
       } else if (user) {
