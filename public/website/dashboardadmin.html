@@ -68,7 +68,7 @@
   </div>
 
   <!--- Si t Sidebar component with st-effect-1 (set on the toggle button within the navbar) -->
-  <div class="sidebar left sidebar-size-3 sidebar-offset-0 sidebar-visible-desktop sidebar-visible-mobile sidebar-skin-dark hide" id="sidebar-menu" data-type="collapse" >
+  <div class="sidebar left sidebar-size-3 sidebar-offset-0 sidebar-visible-desktop sidebar-visible-mobile sidebar-skin-dark" id="sidebar-menu" data-type="collapse" >
     <div data-scrollable>
 
       <div class="sidebar-block">
@@ -99,10 +99,8 @@
         </div>
       </div>
 
-      <ul class="dropdown-menu" role="menu">
-        <li ui-sref-active="active"><a></a></li>
-       
-        <li><a ui-sref="website-pages.login">logout</a></li>
+      <ul class="sidebar-menu">
+        <li><a ui-sref="website-pages.login"><i class="fa fa-sign-out"></i><span>Logout</span></a></li>
       </ul>
     </div>
   </div>

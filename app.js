@@ -101,7 +101,8 @@ app.get( '/', function( req, res ) {
 
 //process.env.PORT || 5000
 
-var port = process.env.PORT || 8000
+//var port = process.env.PORT || 8000
+var port = 3001;
 server.listen(port, function() {
     console.log("App is running on port " + port);
 });

@@ -14,6 +14,7 @@ angular.module('app')
 
 $scope.app.settings.htmlClass = htmlClass.appl3;
 $scope.app.settings.bodyClass = '';
+$("#customPlyr").hide();
 
 
 $scope.searchCourseLesson = function() {
@@ -50,11 +51,38 @@ $scope.searchCourseLesson();
 $scope.searchCoursebyID();
 
 $scope.playvideo = function(videoid){
+
   plyr.get().forEach(function(instance) { 
     instance.destroy();
   });
+
+
+   // angular.element("#plyr").parent(".plyr").hide();
+   // angular.element("#customPlyr").parent(".plyr").hide();
+
+  if(videoid.indexOf("/") >= 0) {
+     var path = "http://localhost:3001/uploads"+videoid;
+      console.log(path);
+      //$("#plyr").parent().hide();
+     angular.element("#customPlyr source").attr("src", path);
+  }
+  else
+  {
+    //$("#customPlyr").parent().hide();
+  $(".plyr--video").first().hide();
   angular.element("#plyr").attr("data-video-id", videoid);
-  plyr.setup()[0];
+  }
+
+  plyr.setup();
+    if(videoid.indexOf("/") >= 0) {
+      $("#customPlyr").show();
+      $("#plyr").parent().hide();
+  }
+  else
+  {
+    $(".plyr--video").first().hide();
+    $("#customPlyr").parent().hide();
+  }
   //plar.destroyed()
 }
 
