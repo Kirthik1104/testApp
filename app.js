@@ -25,6 +25,8 @@ var Subscribe = require( './models/subscribeModels' );
 //var Image = require('./models/ImageModel');
 
 app  = express();
+app.set('port', (process.env.PORT || 5000));
+
 app.use(bodyParser.json());
 server = require('http').createServer(app)
 io = require('socket.io').listen(server)
@@ -98,8 +100,8 @@ app.get( '/', function( req, res ) {
 */
 
 //process.env.PORT || 5000
-server.listen(process.env.PORT || 5000,server_ip_address,function () {
-  console.log("Listening on " + server_ip_address + ", port " + process.env.PORT || 5000)
+server.listen(process.env.port, function () {
+  console.log("Listening on")
 })
 
 
