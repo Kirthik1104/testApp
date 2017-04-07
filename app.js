@@ -100,10 +100,11 @@ app.get( '/', function( req, res ) {
 */
 
 //process.env.PORT || 5000
-server.listen(process.env.port, function () {
-  console.log("Listening on")
-})
 
+var port = process.env.PORT || 8000
+server.listen(port, function() {
+    console.log("App is running on port " + port);
+});
 
 module.exports = app;
 
