@@ -15,7 +15,7 @@ var password = ''
 var privkey = localStorage.privkey
 var pubkey = localStorage.pubkey
 var dest = {}
-dest.name = 'admin'
+dest.name = 'all'
 var old_dest = ''
 var usesecure = false
 var disco = false
@@ -302,7 +302,7 @@ function insertImage(nickname, image, time, toself) {
 }
 
 function messageFromServer(message) {
-	$('#chat_zone').prepend('<p class="from_server"><em>'+message+'</em></p>')
+	//$('#chat_zone').prepend('<p class="from_server"><em>'+message+'</em></p>')
 }
 
 function setupList(new_list) {
