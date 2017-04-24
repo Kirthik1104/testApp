@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('app')
-.controller('courseDetailctrl', function ($scope,$http, courseFactory, $state, $rootScope, UserFactory) {
+.controller('courseDetailctrl', function ($scope,$http, courseFactory, $state, $rootScope, UserFactory, API_URL) {
  var htmlClass = {
   website: 'transition-navbar-scroll top-navbar-xlarge bottom-footer',
   websitePricing: 'top-navbar-xlarge bottom-footer app-desktop',
@@ -20,7 +20,7 @@ $("#customPlyr").hide();
 $scope.searchCourseLesson = function() {
       $scope.courseid = localStorage.getItem("courseid")
       $http({
-        url: 'http://localhost:3001/api/lesson',
+        url: API_URL+'/api/lesson',
         method: 'GET',
         params: {courseid: $scope.courseid}
       }).then(function(response) {                                
@@ -33,7 +33,7 @@ $scope.searchCourseLesson = function() {
 $scope.searchCoursebyID = function() {
       $scope.courseid = localStorage.getItem("courseid")
       $http({
-        url: 'http://localhost:3001/api/getsinglecourse',
+        url: API_URL+'/api/getsinglecourse',
         method: 'GET',
         params: {courseid: $scope.courseid}
       }).then(function(response) {                                
@@ -62,7 +62,7 @@ $scope.playvideo = function(videoid){
    // angular.element("#customPlyr").parent(".plyr").hide();
 
   if(videoid.indexOf("/") >= 0) {
-     var path = "http://localhost:3001/uploads"+videoid;
+     var path = API_URL+"/uploads"+videoid;
       console.log(path);
       //$("#plyr").parent().hide();
      angular.element("#customPlyr source").attr("src", path);

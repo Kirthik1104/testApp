@@ -6043,7 +6043,7 @@ require('./_sidebar-toggle');
 },{}],"/Code/html/themes/learning-1.1.0/src/js/themes/angular/angular/config.router.js":[function(require,module,exports){
 (function(){
     'use strict';
-    angular.module('app').constant('API_URL', 'http://localhost:3001')
+    angular.module('app').constant('API_URL', 'https://dry-mountain-65024.herokuapp.com')
 
     angular.module('app').constant('LOCALES', {
     'locales': {
@@ -6082,7 +6082,7 @@ require('./_sidebar-toggle');
                     .state('sign-up', {
                         url: '/sign-up',
                         templateUrl: 'website/sign-up.html',
-                        controller: ['$scope','$rootScope', '$http', '$state', function($scope, $rootScope, $http, $state){
+                        controller: ['$scope','$rootScope', '$http', '$state','API_URL', function($scope, $rootScope, $http, $state, API_URL){
                             
   $scope.app.settings.htmlClass = htmlClass.websiteLogin;
   $scope.app.settings.bodyClass = 'login';
@@ -6094,7 +6094,7 @@ require('./_sidebar-toggle');
                                 $scope.user.proImg = "";
                                 if($scope.registration.$valid) { 
                                     $http({
-                                      url: 'http://localhost:3001/api/user',
+                                      url: API_URL + '/api/user',
                                       method: 'POST',
                                       data: $scope.user
                                     }).then(function(response) {                                
@@ -6125,7 +6125,7 @@ require('./_sidebar-toggle');
                     .state('website-pages.contact', {
                         url: '/contact',
                         templateUrl: 'website/contact.html',
-                        controller: ['$scope', '$rootScope', '$http', function($scope, $rootScope, $http){
+                        controller: ['$scope', '$rootScope', '$http', 'API_URL', function($scope, $rootScope, $http, API_URL){
                             $scope.app.settings.htmlClass = htmlClass.website;
                             $scope.app.settings.bodyClass = '';
                             
@@ -6135,7 +6135,7 @@ require('./_sidebar-toggle');
 
                             $scope.sendData = function() {
                                 $http({
-                                    url: 'http://localhost:3001/contact',
+                                    url: API_URL + '/contact',
                                     method: "POST",
                                     data: { 'message' : $scope.user.message, 'email': $scope.user.firstName}
                                 })
@@ -6156,7 +6156,7 @@ require('./_sidebar-toggle');
                     .state('website-pages.home', {
                         url: '/home',
                         templateUrl: 'website/home.html',
-                        controller: ['$scope', '$rootScope', '$state','$http', function($scope, $rootScope, $state, $http){
+                        controller: ['$scope', '$rootScope', '$state','$http', 'API_URL', function($scope, $rootScope, $state, $http, API_URL){
                             $scope.app.settings.htmlClass = htmlClass.website;
                             $scope.app.settings.bodyClass = '';
                             $rootScope.loginPage= false;
@@ -6174,7 +6174,7 @@ require('./_sidebar-toggle');
                                 var subscribe = {};
                                 subscribe.email = $rootScope.email;
                                 $http({
-                                  url: 'http://localhost:3001/api/subscribe',
+                                  url: API_URL +'/api/subscribe',
                                   method: 'POST',
                                   data: subscribe
                                 }).then(function(response) {                                
@@ -6231,7 +6231,7 @@ require('./_sidebar-toggle');
                         abstract: true,
                         url: '/app-admin',
                         templateUrl: 'website/dashboardadmin.html',
-                        controller:['$scope', '$rootScope', '$http', function($scope, $rootScope, $http){
+                        controller:['$scope', '$rootScope', '$http', 'API_URL', function($scope, $rootScope, $http, API_URL){
                             $rootScope.loginPage = true;
                             $rootScope.blankPhoto= "/images/people/blank.png";
                             $(".profileimg").click(function() {
@@ -6252,7 +6252,7 @@ require('./_sidebar-toggle');
                                     $scope.user = {};                             
                                     $scope.user.proImg = base64Img;
                                     $http({
-                                      url: 'http://localhost:3001/api/user',
+                                      url: API_URL +/api/user',
                                       method: 'PUT',
                                       data: $scope.user
                                     }).then(function(response) {                                
@@ -6276,7 +6276,7 @@ require('./_sidebar-toggle');
                         abstract: true,
                         url: '/app-instructor',
                         templateUrl: 'website/dashboardinstructor.html',
-                        controller:['$scope', '$rootScope', '$http', function($scope, $rootScope, $http){
+                        controller:['$scope', '$rootScope', '$http', 'API_URL', function($scope, $rootScope, $http, API_URL){
                             $rootScope.loginPage = true;
                             $rootScope.blankPhoto= "/images/people/blank.png";
                              $rootScope.blankPhoto= "/images/people/blank.png";
@@ -6298,7 +6298,7 @@ require('./_sidebar-toggle');
                                     $scope.user = {};                             
                                     $scope.user.proImg = base64Img;
                                     $http({
-                                      url: 'http://localhost:3001/api/user',
+                                      url: API_URL +'/api/user',
                                       method: 'PUT',
                                       data: $scope.user
                                     }).then(function(response) {                                
@@ -6336,7 +6336,7 @@ require('./_sidebar-toggle');
                         abstract: true,
                         url: '/app-student',
                         templateUrl: 'website/dashboardstudent.html',
-                        controller: ['$scope', '$rootScope','$http', function($scope, $rootScope, $http){
+                        controller: ['$scope', '$rootScope','$http', 'API_URL', function($scope, $rootScope, $http, API_URL){
                             $rootScope.loginPage = true;
                             $rootScope.blankPhoto= "/images/people/blank.png";
                             $(".profileimg").click(function() {
@@ -6357,7 +6357,7 @@ require('./_sidebar-toggle');
                                     $scope.user = {};                             
                                     $scope.user.proImg = base64Img;
                                     $http({
-                                      url: 'http://localhost:3001/api/user',
+                                      url: API_URL + '/api/user',
                                       method: 'PUT',
                                       data: $scope.user
                                     }).then(function(response) {                                

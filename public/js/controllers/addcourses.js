@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('app')
-.controller('addCourse', function ($scope,$http, courseFactory, $state, $rootScope, UserFactory) {
+.controller('addCourse', function ($scope,$http, courseFactory, $state, $rootScope, UserFactory, API_URL) {
  var htmlClass = {
   website: 'transition-navbar-scroll top-navbar-xlarge bottom-footer',
   websitePricing: 'top-navbar-xlarge bottom-footer app-desktop',
@@ -36,7 +36,7 @@ $scope.submit = function() {
 $scope.addLesson = function() {
       $scope.lesson.courseid = localStorage.getItem("courseid")
       $http({
-        url: 'http://localhost:3001/api/lesson',
+        url: API_URL +'/api/lesson',
         method: 'POST',
         data: $scope.lesson
       }).then(function(response) {                                
@@ -51,7 +51,7 @@ $scope.addLesson = function() {
 $scope.addlessonTab = function() {
       $scope.courseid = localStorage.getItem("courseid")
       $http({
-        url: 'http://localhost:3001/api/lesson',
+        url: API_URL +'/api/lesson',
         method: 'GET',
         params: {courseid: $scope.courseid}
       }).then(function(response) {                                
