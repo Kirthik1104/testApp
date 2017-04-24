@@ -8,7 +8,7 @@ app.factory('UserFactory', function UserFactory($http, API_URL, AuthTokenFactory
     };
 
     function login(username, password) {
-      return $http.post(API_URL + '/api/authenticat', {
+      return $http.post('/api/authenticat', {
         userName: username,
         password: password
       }).then(function success(response) {

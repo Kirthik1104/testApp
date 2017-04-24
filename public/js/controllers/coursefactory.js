@@ -12,7 +12,8 @@ app.factory('courseFactory', function courseFactory($http, API_URL, $q) {
         genre: "username1",
         duration: obj.duration,
         instructor: "instructor",
-        description: obj.description
+        description: obj.description,
+        price:obj.price 
       }).then(function success(response) {
         return response;
       });

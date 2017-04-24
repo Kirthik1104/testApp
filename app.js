@@ -25,7 +25,7 @@ var Subscribe = require( './models/subscribeModels' );
 //var Image = require('./models/ImageModel');
 
 app  = express();
-app.set('port', (process.env.PORT || 5000));
+//app.set('port', (process.env.PORT || 5000));
 
 app.use(bodyParser.json());
 server = require('http').createServer(app)
@@ -102,7 +102,7 @@ app.get( '/', function( req, res ) {
 //process.env.PORT || 5000
 
 //var port = process.env.PORT || 8000
-var port = 3001;
+//var port = 3001;
 server.listen(port, function() {
     console.log("App is running on port " + port);
 });

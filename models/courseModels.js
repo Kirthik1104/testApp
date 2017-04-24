@@ -15,9 +15,9 @@ var courseModel = new Schema({
   duration: {type:String},
   instructor : { type : String },
   genre : { type : String },
-  //rating : [rateSchema],
+  price:{ type: String},
   subscribe : { type : String},
-  //created : { type : Date, default : Date.now }
+  created : { type : Date, default : Date.now }
 });
 
 var Course = mongoose.model( 'Course', courseModel );

@@ -55,10 +55,8 @@
                     </div>
 
                     <div class="form-group form-control-material">
-                      <select id="select" class="form-control ">
+                      <select id="select" ng-options="x for x in Prnames" ng-model="course.price" class="form-control">
                         <option value=""></option>
-                        <option value="0">Free</option>
-                        <option value="1">Primium</option>
                       </select>                    
                       <label for="title">Price</label>
                     </div>

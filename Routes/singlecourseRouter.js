@@ -8,7 +8,6 @@ var courseController = require( '../Controllers/courseController' )( Course );
 
 courseRouter.route( '/' ).get( courseController.getcourseDetail );
 
-
 courseRouter.use(function(req, res, next) {
   // check header or url parameters or post parameters for token
   var token = req.body.token || req.query.token || req.headers['x-access-token'];
@@ -49,6 +48,7 @@ courseRouter.use(function(req, res, next) {
     
   }
 });
+
 
 
 

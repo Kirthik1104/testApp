@@ -39,7 +39,8 @@ $scope.searchCoursebyID = function() {
       }).then(function(response) {                                
          $scope.course = response.data.course;
       }, function(error) {
-        alert(error.message);
+        alert("This is not free course so please Purchase this video Login with student");
+        $state.go('website-pages.login');
       });  
 }
 

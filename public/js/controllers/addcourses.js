@@ -19,8 +19,13 @@ $rootScope.loginPage = true;
 
 $scope.course = {};
 
+
+$scope.Prnames = ["Premium", "Free"];
+
+
 $scope.submit = function() {
   $scope.course.description =  angular.element(".note-editable").html();
+  console.log($scope.course)
   courseFactory.createNewCourse($scope.course).then(function success(response) {
     alert("course updated sucessfully. Now create Lesson");
     localStorage.setItem("courseid", response.data._id);
