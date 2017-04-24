@@ -6044,6 +6044,7 @@ require('./_sidebar-toggle');
 (function(){
     'use strict';
     angular.module('app').constant('API_URL', 'https://dry-mountain-65024.herokuapp.com')
+    //angular.module('app').constant('API_URL', 'http://localhost:3001')
 
     angular.module('app').constant('LOCALES', {
     'locales': {
@@ -6252,7 +6253,7 @@ require('./_sidebar-toggle');
                                     $scope.user = {};                             
                                     $scope.user.proImg = base64Img;
                                     $http({
-                                      url: API_URL +/api/user',
+                                      url: API_URL +'/api/user',
                                       method: 'PUT',
                                       data: $scope.user
                                     }).then(function(response) {                                
